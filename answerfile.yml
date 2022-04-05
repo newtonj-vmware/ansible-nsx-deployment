@@ -353,7 +353,7 @@ edge_clusters:                                                            # Each
 # This is a Manual Removal process (state of absent) will NOT remove
 addional_nsx_managers:                                                    # Each new NSX Manager deployed to current NSX Manager Cluster starts with - nsx_size
 # 2nd NSX Manager   
-- nsx_size: "small"                                                       # Size of NSX Manager (extrasmall / small / medium / large) [must be lower case]
+- nsx_size: "SMALL"                                                       # Size of NSX Manager (EXTRASMALL / SMALL / MEDIUM / LARGE) [must be UPPER case]
   user_settings:                                                          #
     cli_password: "NSX$321nsx$321"                                        # CLI Password - This is the admin password    
     root_password: "NSX$321nsx$321"                                       # Root Password
@@ -375,7 +375,7 @@ addional_nsx_managers:                                                    # Each
     dns_servers:                                                          # DNS Servers
     - "10.255.10.200"                                                     # 1st DNS Server IP Address
 # 3rd NSX Manager
-- nsx_size: "small"
+- nsx_size: "SMALL"
   user_settings:
     cli_password: "NSX$321nsx$321"
     root_password: "NSX$321nsx$321"
