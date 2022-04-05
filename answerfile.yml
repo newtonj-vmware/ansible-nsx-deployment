@@ -219,7 +219,7 @@ edge_transport_nodes:                                                     # Each
     - name: "UP-EDGE-MTEP"                                                # Uplink Profile Name (Defined in Uplink Profile Section uplink_profiles/display_name)
       type: UplinkHostSwitchProfile                                       # Type: UplinkHostSwitchProfile or LldpHostSwitchProfile
     host_switch_mode: STANDARD                                            # host_switch_mode With 3.2 is automaticly added, if deploying 3.1 it MUST be there must be inline with that start of "- name:..."
-    #host_switch_name: "nsxDefaultHostSwitch"                             # Edge Transport Node internal "Edge Switch Name" (Default is set)
+    host_switch_name: "nsxDefaultHostSwitch"                             # Edge Transport Node internal "Edge Switch Name"
     pnics:                                                                # PNICS will follow how your host_switch_profiles/name is configured.  If you have single you'll only have one PNICS/device_name and uplink/name
     - device_name: "fp-eth0"                                              # Device name follow the datapath device that uplink_name will connect to within the Edge Transport Node (fp-eth0/1/2)
       uplink_name: "fp-eth0"                                              # Follows the name of the Active Uplink in the selected Uplink Profile (host_switch_profile/name:)
@@ -283,7 +283,7 @@ edge_transport_nodes:                                                     # Each
       type: UplinkHostSwitchProfile
     host_switch_mode: STANDARD                                            #host_switch_mode With 3.2 is automaticly added, if deploying 3.1 it MUST be there must be inline with that start of "- name:..."
     #Other options - Just uncomment lines if needed    
-    #host_switch_name: "nsxDefaultHostSwitch"
+    host_switch_name: "nsxDefaultHostSwitch"
     #host_switch_type: "NVDS"
     pnics:
     - device_name: "fp-eth0"
