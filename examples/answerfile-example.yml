@@ -13,7 +13,9 @@
   # Example: ansible-playbook -e @answerfile-lab1.yml -e nsx_liscense="XXXXX-XXXXX-XXXXX-XXXXX-XXXXX" deploy-nsx.yml  (Add different license)
   # Note you MUST add the @ in front of a filename
   # Note (dynamic) in an area means this you can repeat the same code for multiple actions (e.g. Multiple Compute Managers, Uplink Profiles, Edge Nodes Deployments etc)
-  # If you do NOT want a section to run # out the - import_playbook line in the deploy YAML file.
+  # If you're in a (dynamic) playbook and only have a single object to add but two are in the example, remove the extra lines or add # in fron of the lines you do not want to be processed -
+  # (E.g. Compute Managers Section Everything under # Start of 2nd Compute Manager would have a # in front, so that only a single Compute Manager would be added)
+  # If you do NOT want a section to run # out the - import_playbook line in the deploy YAML file. (deploy-nsx-32.yml)
   # Confirmed working for 3.1.3.7 and 3.2.0.1
 
 
@@ -222,7 +224,7 @@ edge_transport_nodes:                                                     # Each
     - device_name: "fp-eth0"                                              # Device name follow the datapath device that uplink_name will connect to within the Edge Transport Node (fp-eth0/1/2)
       uplink_name: "fp-eth0"                                              # Follows the name of the Active Uplink in the selected Uplink Profile (host_switch_profile/name:)
     - device_name: "fp-eth1"                                              # 2nd Device name follow the datapath device that uplink_name will connect to within the Edge Transport Node (fp-eth0/1/2)
-      uplink_name: "fp-eth2"                                              # 2nd Follows the name of the Active Uplink in the selected Uplink Profile (host_switch_profile/name:)    
+      uplink_name: "fp-eth1"                                              # 2nd Follows the name of the Active Uplink in the selected Uplink Profile (host_switch_profile/name:)    
     ip_assignment_spec:                                                   # IP Assignment Spec (TEPs)
       resource_type: "StaticIpPoolSpec"                                   # StaticIpPoolSpec / StaticIpListSpec / AssignedByDhcp (Answerfile / Playbook will follow standard StaticIpPoolSpec)
       ip_pool_name: "IP-EDGE-TEP-Pool"                                    # Name of Static IP Pool (Defined IP Pools Section ip_pools/display_name)
