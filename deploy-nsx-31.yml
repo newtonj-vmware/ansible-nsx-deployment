@@ -1,0 +1,24 @@
+---
+- hosts: 127.0.0.1
+  name: Test NSX Deployment
+  gather_facts: false
+  vars_files: 
+    - answerfile.yml
+
+
+# Infrastructure Deployment # 
+
+- import_playbook: playbooks/3.1/01-deploy-nsxmanager.yml
+- import_playbook: playbooks/3.1/02-configure-nsxmanager-vip.yml
+- import_playbook: playbooks/3.1/03-configure-nsxmanager-license.yml
+- import_playbook: playbooks/3.1/04-configure-compute-managers.yml
+- import_playbook: playbooks/3.1/05-configure-nsxmanager-uplinkprofiles.yml
+- import_playbook: playbooks/3.1/06-configure-nsxmanager-ippools.yml
+- import_playbook: playbooks/3.1/07-configure-nsxmanager-transportzones.yml
+- import_playbook: playbooks/3.1/08-configure-namedteamingpolicy-transportzones.yml
+- import_playbook: playbooks/3.1/09-configure-nsxmanager-transportnodesprofiles.yml
+- import_playbook: playbooks/3.1/10-configure-nsxmanager-transportnodes.yml
+- import_playbook: playbooks/3.1/11-deploy-edgenodes.yml
+- import_playbook: playbooks/3.1/12-configure-nsxmanager-edgeclusters.yml
+- import_playbook: playbooks/3.1/13-deploy-nsxmanager-cluster.yml
+...

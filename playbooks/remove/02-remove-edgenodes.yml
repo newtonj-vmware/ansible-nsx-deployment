@@ -1,0 +1,24 @@
+---
+- hosts: 127.0.0.1
+  name: 02 - Remove NSX Edge Transport Nodes
+  gather_facts: false
+  vars_files: 
+    - ../../answerfile.yml
+
+  tasks:
+    - name: Remove NSX Edge Transport Nodes
+      vmware.ansible_for_nsxt.nsxt_transport_nodes:
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        display_name: "{{ item.display_name }}"
+        description: "{{ item.description }}"
+        host_switch_spec:
+          resource_type: "StandardHostSwitchSpec"
+          host_switches: "{{ item.host_switches }}"
+        node_deployment_info: "{{ item.node_deployment_info }}"
+        state: "{{ state }}"
+      with_items:
+        - "{{ edge_transport_nodes }}"
+...

@@ -1,0 +1,24 @@
+---
+- hosts: 127.0.0.1
+  name: 03 - Remove NSX Transport Nodes Profiles
+  gather_facts: false
+  vars_files: 
+    - ../../answerfile.yml
+
+  tasks:
+    - name: Remove Transport Node Profiles
+      vmware.ansible_for_nsxt.nsxt_transport_node_profiles:
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        resource_type: "TransportNodeProfile"
+        display_name: "{{ item.display_name }}"
+        description: "{{ item.description }}"
+        host_switch_spec:
+          resource_type: "StandardHostSwitchSpec"
+          host_switches: "{{ item.host_switches }}"
+        state: "{{ state }}"
+      with_items:
+        - "{{ transport_node_profiles }}"
+...
