@@ -374,6 +374,9 @@ addional_nsx_managers:                                                    # Each
     - "10.255.11.1"                                                       # Management Gateway IP Address
     dns_servers:                                                          # DNS Servers
     - "10.255.10.200"                                                     # 1st DNS Server IP Address
+    enable_ssh: True                                                      # Enable SSH Access (Should be disabled - Security Yo!)
+    allow_ssh_root_login: True                                            # Allow Root Login over SSH (Should be disabled - Security Yo!)
+
 # 3rd NSX Manager
 - nsx_size: "SMALL"
   user_settings:
@@ -396,5 +399,7 @@ addional_nsx_managers:                                                    # Each
     - "10.255.11.1"
     dns_servers:
     - "10.255.10.200"
+    enable_ssh: True
+    allow_ssh_root_login: True
     
 ...
