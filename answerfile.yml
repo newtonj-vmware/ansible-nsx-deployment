@@ -80,6 +80,7 @@ compute_managers:                                                         # Each
 # Used for playbook 05
 uplink_profiles:                                                          # Each new Uplink Profile will start with - display_name
 - display_name: "UP-ESXi-MTEP"                                            # Display Name of this new Uplink Profile
+  mtu: "1600"                                                             # MTU (1280-9000)
   teaming:                                                                # Teamings section of Uplink Profiles - [Default Teaming] (active_list / standby_list [if needed])
     active_list:                                                          # Active Uplinks section of Uplink Profiles
     - uplink_name: "vmnic0"                                               # Name under Active Uplinks
@@ -101,6 +102,7 @@ uplink_profiles:                                                          # Each
     policy: FAILOVER_ORDER                                                  
 # Start of 2nd Uplink Profile 
 - display_name: "UP-EDGE-MTEP"
+  mtu: "1600"
   teaming:
     active_list:
     - uplink_name: "chicken"

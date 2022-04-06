@@ -6,7 +6,7 @@
     - ../../answerfile.yml
 
   tasks:
-    - name: Create NSX Transport Zones
+     - name: Create NSX Transport Zones
       vmware.ansible_for_nsxt.nsxt_transport_zones:
         hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
         username: "{{ nsx_admin_user }}"
