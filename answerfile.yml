@@ -21,7 +21,7 @@
 
 ## Ansibe Variables
 ## Global State can be present (build) or absent (remove) (Used for all playbooks)
-state: "present"                                                          #
+state: "presentdsdsds"                                                          #
 
 ## NSX Manager OVA Variables 
 ## Extra Deployment requirements:
