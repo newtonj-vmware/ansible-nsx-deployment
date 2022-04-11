@@ -16,9 +16,7 @@
         display_name: "{{ item.display_name }}"
         teaming: "{{ item.teaming }}"
         transport_vlan: "{{ item.transport_vlan }}"
-        named_teamings: "{{ item.named_teamings }}"
         state: "{{ state }}"
       with_items: 
         - "{{ uplink_profiles }}"
-      #when: (item.named_teaming is defined)
 ...   

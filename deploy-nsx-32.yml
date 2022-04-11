@@ -13,13 +13,13 @@
 - import_playbook: playbooks/3.2/03-configure-nsxmanager-license.yml
 - import_playbook: playbooks/3.2/04-configure-compute-managers.yml
 - import_playbook: playbooks/3.2/05-configure-nsxmanager-uplinkprofiles.yml
-# - import_playbook: playbooks/3.2/06-configure-nsxmanager-ippools.yml
-# - import_playbook: playbooks/3.2/07-configure-nsxmanager-transportzones.yml
-# - import_playbook: playbooks/3.2/08-configure-namedteamingpolicy-transportzones.yml
-# - import_playbook: playbooks/3.2/09-configure-nsxmanager-transportnodesprofiles.yml
-# - import_playbook: playbooks/3.2/10-configure-nsxmanager-transportnodes.yml
-# - import_playbook: playbooks/3.2/11-deploy-edgenodes.yml
-# - import_playbook: playbooks/3.2/12-configure-nsxmanager-edgeclusters.yml
+- import_playbook: playbooks/3.2/06-configure-nsxmanager-ippools.yml
+- import_playbook: playbooks/3.2/07-configure-nsxmanager-transportzones.yml
+#- import_playbook: playbooks/3.2/08-configure-namedteamingpolicy-transportzones.yml
+- import_playbook: playbooks/3.2/09-configure-nsxmanager-transportnodesprofiles.yml
+#- import_playbook: playbooks/3.2/10-configure-nsxmanager-transportnodes.yml
+- import_playbook: playbooks/3.2/11-deploy-edgenodes.yml
+- import_playbook: playbooks/3.2/12-configure-nsxmanager-edgeclusters.yml
 # - import_playbook: playbooks/3.2/13-deploy-nsxmanager-cluster.yml
 # import_playbook: playbooks/3.2/14-clear-password-expiration.yml
 ...

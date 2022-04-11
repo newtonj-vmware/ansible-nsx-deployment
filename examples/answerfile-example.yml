@@ -158,15 +158,17 @@ transportzones:                                                           ## Eac
 - display_name: "nsx-vlan-transportzone"
   transport_type: "VLAN"
   description: "Ansible Created NSX VLAN Transportzone"
-
-## Transport Zone Uplink Teaming Policy (dynamic)
-## Used for playbook 08 (NOT REQUIRED) ## Playbook 08 in deploy YAML file if not needed
-transportzones_named_teaming_policy:                                      ## Each Named Teaming Policy will start with - display_name
-- display_name: "nsx-vlan-transportzone"                                  ## Name of the Transport Zone you're attaching to the Named Teaming Policy to (MUST BE type VLAN)
-  description: "Ansible Created NSX VLAN Transportzone"                   ## If not present it will overwrite old description from 07 playbook
-  uplink_teaming_policy_names:                                            ## Name of the Named Teaming Policies defined in Uplink Profile Sections named_teamings/name
+  uplink_teaming_policy_names:                                            ## Name of the Named Teaming Policies defined in Uplink Profile Sections named_teamings/name (MUST BE type transport_type: VLAN)
   - "TOR-1"                                                               ## 1st Named Teaming Policy
   - "TOR-2"                                                               ## 2nd Named Teaming Policy
+## Transport Zone Uplink Teaming Policy (dynamic)
+## Used for playbook 08 (NOT REQUIRED) ## Playbook 08 in deploy YAML file if not needed
+# transportzones_named_teaming_policy:                                      ## Each Named Teaming Policy will start with - display_name
+# - display_name: "nsx-vlan-transportzone"                                  ## Name of the Transport Zone you're attaching to the Named Teaming Policy to (MUST BE type VLAN)
+#   description: "Ansible Created NSX VLAN Transportzone"                   ## If not present it will overwrite old description from 07 playbook
+#   uplink_teaming_policy_names:                                            ## Name of the Named Teaming Policies defined in Uplink Profile Sections named_teamings/name
+#   - "TOR-1"                                                               ## 1st Named Teaming Policy
+#   - "TOR-2"                                                               ## 2nd Named Teaming Policy
 
 ## Transport Node Profiles (dynamic)
 ## Used for playbook 09
