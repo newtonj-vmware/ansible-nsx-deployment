@@ -30,10 +30,10 @@ state: "present"                                                          #
 ## Used in EVERY playbooks (Called to connect and run playbooks)
 ## Also used for Deployment / Configuration of playbooks 01-03
 ## 
-ovftool_path: "/usr/bin"                                                  ## Location of "ovftool"
+ovftool_path: "/usr/bin"                                                  ## Location of "ovftool" [ls /usr/bin/ovf* - to confirm location]
 nsx_ova_path: "/tmp"                                                      ## Location of NSX Manager OVA File
 nsx_ova_file: "nsx-unified-appliance-3.2.0.1.0.19232400.ova"              ## NSX Manager OVA File Name 
-nsx_size: "small"                                                         ## Size of NSX Manager (extrasmall / small / medium / large) [must be lower case]
+nsx_size: "small"                                                         ## Size of NSX Manager (extrasmall (not really used) / small / medium / large) [must be lower case]
 nsx_virtual_machine_name: "NSX-Manager-01"                                ## How the VM will be displayed in vCenter
 nsx_hostname: "NSX-Manager-01"                                            ## This hostname will be used for deployment and status checks
 nsx_domain: 'lab.local'                                                   ## Domain will be added to nsx_hostname for deployment to give FQDN calls
@@ -50,7 +50,7 @@ nsx_gateway: "10.255.11.1"                                                ## Gat
 nsx_dns_server: "10.255.10.200"                                           ## DNS server for NSX Manager being deployed
 nsx_ntp_server: "10.255.11.199"                                           ## NTP server for NSX Manager being deployed
 nsx_vip: '10.255.11.156'                                                  ## Virtual IP address will be assigned to the NSX Manager Cluster
-nsx_role: "NSX Manager"                                                   ## Needed role for NSX Manager deployment
+nsx_role: "NSX Manager"                                                   ## Needed role for NSX Manager deployment [NSX Global Manager or NSX Manager or nsx-cloud-service-manager]
 nsx_admin_user: "admin"                                                   ## This user will be used for deployment and status checks
 nsx_admin_password: "NSX$321nsx$321"                                      ## This password will be used for deployment and status checks
 nsx_cli_password: "NSX$321nsx$321"                                        ## CLI Password - This is the root password 
@@ -201,7 +201,7 @@ transport_node_profiles:                                                  ## Eac
 ## This is a Manual Removal process (state of absent) will NOT remove, it will just "Detach Transport Node Profile"
 host_transport_nodes:                                                     ## Each Host Transport Node will start with - display_name (Note The same TNP can be used over and over again, display_name MUST be unique for EACH cluster and only a single cluster per display_name)
 - display_name: "TNC1"                                                    ## Display name (Not seen in UI)
-  description: "Transport Node Collections 1"                             ## Description of this Transport Node Collection 
+  description: "Transport Node Collections 1"                             ## Description of this Transport Node Collection
   compute_manager_name: "nsx-vc"                                          ## Compute Manager Name (Defined in Compute Managers Section compute_manages/display_name)
   cluster_name: "Cluster-1"                                               ## Cluster Name - Must be a cluster inside the selected Compute Manager (Note only 1 cluster per display_name)
   transport_node_profile_name: "TNP-Compute"                              ## Name of TNP (Defined in Transport Node Profiles Section transport_node_profiles/display_name)
@@ -276,7 +276,7 @@ edge_transport_nodes:                                                     ## Eac
           memory_reservation:                                             ## Memory Reservation Area
             reservation_percentage: 0                                     ## Memory Reservation Percentage (100 is default [100%] however in lab deployments 0 can be used)
           
-#
+##
 ## Start of 2nd Edge Node Configuration
 ##       
 - display_name: "Edge-Node-02"
@@ -405,5 +405,5 @@ addional_nsx_managers:                                                    ## Eac
     - "10.255.10.200"
     enable_ssh: True
     allow_ssh_root_login: True
-
+    
 ...
