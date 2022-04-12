@@ -22,5 +22,5 @@
           username: "{{ nsx_admin_user }}"
           password: "{{ nsx_admin_password }}"
           validate_certs: "{{ nsx_validate_certs }}"
-          wait_time: 10
+          wait_time: 30
 ...
