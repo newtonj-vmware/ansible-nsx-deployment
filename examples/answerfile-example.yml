@@ -78,31 +78,31 @@ compute_managers:                                                         ## Eac
 
 ## Uplink Profiles Section (dynamic)
 ## Used for playbook 05
-uplink_profiles:                                                          ## Each new Uplink Profile will start with - display_name
-- display_name: "UP-ESXi-MTEP"                                            ## Display Name of this new Uplink Profile
-  mtu: "1700"                                                             ## MTU (1280-9000) Note: MTU is not applicable for VDS, this varible is ignored unless playbook 05 is changed (Use Global MTU)
-  teaming:                                                                ## Teamings section of Uplink Profiles - [Default Teaming] (active_list / standby_list [if needed])
-    active_list:                                                          ## Active Uplinks section of Uplink Profiles
-    - uplink_name: "vmnic0"                                               ## Name under Active Uplinks
-      uplink_type: PNIC                                                   ## PNIC or LAG
-    - uplink_name: "vmnic1"                                               ## If adding a 2nd NIC for Multiple TEPs
-      uplink_type: PNIC                                                   ## PNIC or LAG
-    policy: LOADBALANCE_SRCID                                             ## Teaming Policy (LOADBALANCE_SRCRD / FAILOVER_ORDER / LOADBALANCE_SRC_MAC)
-  transport_vlan: 140                                                     ## Transport VLAN (VLAN TEPs will use)
-  named_teamings:                                                         ## Named Teamings - Teamings outside of [Default Teaming] (active_list / standby_list [if needed])
-  - name: "TOR-1"                                                         ## Name for this Teaming
-    active_list:                                                          ## Active Uplinks section of Uplink Profiles
-      - uplink_name: "vmnic0"                                             ## Name under Active Uplinks
-        uplink_type: PNIC                                                 ## PNIC or LAG
-    policy: FAILOVER_ORDER                                                ## Teaming Policy (LOADBALANCE_SRCRD / FAILOVER_ORDER / LOADBALANCE_SRC_MAC)
-  - name: "TOR-2"                                                         ## 2nd Named Teaming Policy for this Teaming (Follows like the first)
+uplink_profiles:                                                            ## Each new Uplink Profile will start with - display_name
+- display_name: "UP-ESXi-MTEP"                                              ## Display Name of this new Uplink Profile
+  mtu: "9000"                                                               ## MTU (1280-9000) Note: MTU is not applicable for VDS, this varible is ignored unless playbook 05 is changed (Use Global MTU)
+  teaming:                                                                  ## Teamings section of Uplink Profiles - [Default Teaming] (active_list / standby_list [if needed])
+    active_list:                                                            ## Active Uplinks section of Uplink Profiles
+    - uplink_name: "vmnic0"                                                 ## Name under Active Uplinks
+      uplink_type: PNIC                                                     ## PNIC or LAG
+    - uplink_name: "vmnic1"                                                 ## If adding a 2nd NIC for Multiple TEPs
+      uplink_type: PNIC                                                     ## PNIC or LAG
+    policy: LOADBALANCE_SRCID                                               ## Teaming Policy (LOADBALANCE_SRCRD / FAILOVER_ORDER / LOADBALANCE_SRC_MAC)
+  transport_vlan: 140                                                       ## Transport VLAN (VLAN TEPs will use)
+  named_teamings:                                                           ## Named Teamings - Teamings outside of [Default Teaming] (active_list / standby_list [if needed])
+  - name: "TOR-1"                                                           ## Name for this Teaming
+    active_list:                                                            ## Active Uplinks section of Uplink Profiles
+      - uplink_name: "vmnic0"                                               ## Name under Active Uplinks
+        uplink_type: PNIC                                                   ## PNIC or LAG
+    policy: FAILOVER_ORDER                                                  ## Teaming Policy (LOADBALANCE_SRCRD / FAILOVER_ORDER / LOADBALANCE_SRC_MAC)
+  - name: "TOR-2"                                                           ## 2nd Named Teaming Policy for this Teaming (Follows like the first)
     active_list:                                                            
       - uplink_name: "vmnic1"                                               
         uplink_type: PNIC                                                   
     policy: FAILOVER_ORDER                                                  
 ## Start of 2nd Uplink Profile 
 - display_name: "UP-EDGE-MTEP"
-  mtu: "1700"
+  mtu: "9000"
   teaming:
     active_list:
     - uplink_name: "chicken"
@@ -119,9 +119,33 @@ uplink_profiles:                                                          ## Eac
     policy: FAILOVER_ORDER
   - name: "TOR-2"
     active_list:
-      - uplink_name: "patato"
+      - uplink_name: "potato"
         uplink_type: PNIC
     policy: FAILOVER_ORDER  
+#
+- display_name: "UP-ESXi-STEP"
+  mtu: "9000"
+  teaming:
+    active_list:
+    - uplink_name: "vmnic0"
+      uplink_type: PNIC
+    standby_list:
+    - uplink_name: "vmnic1"
+      uplink_type: PNIC
+    policy: FAILOVER_ORDER
+  transport_vlan: 140
+# ##
+- display_name: "UP-EDGE-STEP"
+  mtu: "9000"
+  teaming:
+    active_list:
+    - uplink_name: "chicken"
+      uplink_type: PNIC
+    standby_list:
+    - uplink_name: "potato"
+      uplink_type: PNIC
+    policy: FAILOVER_ORDER
+  transport_vlan: 141
 
 ## IP Pools Section (dynamic)
 ## Used for playbook 06
