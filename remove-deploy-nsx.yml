@@ -5,7 +5,7 @@
   vars_files: 
     - answerfile.yml
 
-# Quick way is to add Extra_Vars for removal - (e.g. ansisble-playbook -e @answerfile-deployment.yml -e state="absent") - This will overwrite your answerfile state to absent vs persent
+# Quick way is to add Extra_Vars for removal - (e.g. ansisble-playbook -e @answerfile-deployment.yml -e state="absent") - This will overwrite your answerfile state to absent vs present
 # Infrastructure Deployment # 
 
 - import_playbook: playbooks/remove/01-remove-nsxmanager-edgeclusters.yml
