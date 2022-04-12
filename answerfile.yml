@@ -221,7 +221,7 @@ transport_node_profiles:                                                  ## Eac
 
 ## Configure Host Transport Nodes (dynamic)
 ## Used for playbook 10
-## Unique display_name for each cluster - Cannot deploy to multiple clusters under one display_name
+## Unique display_name for each vCenter cluster - Cannot deploy to multiple clusters under one display_name
 ## This is a Manual Removal process (state of absent) will NOT remove, it will just "Detach Transport Node Profile"
 host_transport_nodes:                                                     ## Each Host Transport Node will start with - display_name (Note The same TNP can be used over and over again, display_name MUST be unique for EACH cluster and only a single cluster per display_name)
 - display_name: "TNC1"                                                    ## Display name (Not seen in UI)
@@ -229,6 +229,7 @@ host_transport_nodes:                                                     ## Eac
   compute_manager_name: "nsx-vc"                                          ## Compute Manager Name (Defined in Compute Managers Section compute_manages/display_name)
   cluster_name: "Cluster-1"                                               ## Cluster Name - Must be a cluster inside the selected Compute Manager (Note only 1 cluster per display_name)
   transport_node_profile_name: "TNP-Compute"                              ## Name of TNP (Defined in Transport Node Profiles Section transport_node_profiles/display_name)
+#2nd Cluster to apply Transport Node Profile
 - display_name: "TNC2"                                                    ## 2nd Display Name - Needed if doing multiple clusters with TNPs
   description: "Transport Node Collections 2"
   compute_manager_name: "nsx-vc"
