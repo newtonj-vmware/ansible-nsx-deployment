@@ -258,7 +258,7 @@ edge_transport_nodes:                                                     ## Eac
       resource_type: "StaticIpPoolSpec"                                   ## StaticIpPoolSpec / StaticIpListSpec / AssignedByDhcp (Answerfile / Playbook will follow standard StaticIpPoolSpec)
       ip_pool_name: "IP-EDGE-TEP-Pool"                                    ## Name of Static IP Pool (Defined IP Pools Section ip_pools/display_name)
     transport_zone_endpoints:                                             ## Which Transport Zones are going to be connected to this Edge Transport Node (Defined in Transport Zone Section transportzones/display_name)
-      - transport_zone_name: "nsx-overlay-transportzone"                  ## 1st connected Transport Zone Name
+      - transport_zone_name: "nsx-overlay-transportzone"                  ## 1st connected Transport Zone Name 
       - transport_zone_name: "nsx-vlan-transportzone"                     ## 2nd connected Transport Zone Name
   node_deployment_info:                                                   ## Edge Transport Node VM deployment info
     resource_type: "EdgeNode"                                             ## Type EdgeNode
