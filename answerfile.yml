@@ -80,7 +80,7 @@ compute_managers:                                                         ## Eac
 ## Used for playbook 05
 uplink_profiles:                                                            ## Each new Uplink Profile will start with - display_name
 - display_name: "UP-ESXi-MTEP"                                              ## Display Name of this new Uplink Profile
-  mtu: "9000"                                                               ## MTU (1280-9000) Note: MTU is not applicable for VDS, this varible is ignored unless playbook 05 is changed (Use Global MTU)
+  mtu: "1700"                                                               ## MTU (1280-9000) Note: MTU is not applicable for VDS, this varible is ignored unless playbook 05 is changed (Use Global MTU)
   teaming:                                                                  ## Teamings section of Uplink Profiles - [Default Teaming] (active_list / standby_list [if needed])
     active_list:                                                            ## Active Uplinks section of Uplink Profiles
     - uplink_name: "vmnic0"                                                 ## Name under Active Uplinks
@@ -102,29 +102,29 @@ uplink_profiles:                                                            ## E
     policy: FAILOVER_ORDER                                                  
 ## Start of 2nd Uplink Profile 
 - display_name: "UP-EDGE-MTEP"
-  mtu: "9000"
+  mtu: "1700"
   teaming:
     active_list:
-    - uplink_name: "chicken"
+    - uplink_name: "fp-eth0"
       uplink_type: PNIC
-    - uplink_name: "potato"
+    - uplink_name: "fp-eth1"
       uplink_type: PNIC
     policy: LOADBALANCE_SRCID
   transport_vlan: 141
   named_teamings:
   - name: "TOR-1"
     active_list:
-      - uplink_name: "chicken"
+      - uplink_name: "fp-eth0"
         uplink_type: PNIC
     policy: FAILOVER_ORDER
   - name: "TOR-2"
     active_list:
-      - uplink_name: "potato"
+      - uplink_name: "fp-eth1"
         uplink_type: PNIC
     policy: FAILOVER_ORDER  
 #
 - display_name: "UP-ESXi-STEP"
-  mtu: "9000"
+  mtu: "1700"
   teaming:
     active_list:
     - uplink_name: "vmnic0"
@@ -136,13 +136,13 @@ uplink_profiles:                                                            ## E
   transport_vlan: 140
 # ##
 - display_name: "UP-EDGE-STEP"
-  mtu: "9000"
+  mtu: "1700"
   teaming:
     active_list:
-    - uplink_name: "chicken"
+    - uplink_name: "fp-eth0"
       uplink_type: PNIC
     standby_list:
-    - uplink_name: "potato"
+    - uplink_name: "fp-eth1"
       uplink_type: PNIC
     policy: FAILOVER_ORDER
   transport_vlan: 141
