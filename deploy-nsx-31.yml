@@ -20,5 +20,5 @@
 - import_playbook: playbooks/3.1/10-configure-nsxmanager-transportnodes.yml
 - import_playbook: playbooks/3.1/11-deploy-edgenodes.yml
 - import_playbook: playbooks/3.1/12-configure-nsxmanager-edgeclusters.yml
-- import_playbook: playbooks/3.1/13-deploy-nsxmanager-cluster.yml
+#- import_playbook: playbooks/3.1/13-deploy-nsxmanager-cluster.yml
 ...
