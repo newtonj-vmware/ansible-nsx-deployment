@@ -38,5 +38,6 @@
           username: "{{ nsx_admin_user }}"
           password: "{{ nsx_admin_password }}"
           validate_certs: "{{ nsx_validate_certs }}"
-          wait_time: 15
+          #Amount of time (minutes) the task will wait for the NSX Manager to come back ready
+          wait_time: 30
 ...
