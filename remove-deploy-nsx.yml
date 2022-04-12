@@ -15,7 +15,8 @@
 - import_playbook: playbooks/remove/04-remove-nsxmanager-transportzones.yml
 - import_playbook: playbooks/remove/05-remove-nsxmanager-ippools.yml
 - import_playbook: playbooks/remove/06-remove-nsxmanager-uplinkprofiles.yml
+# "--==You must manually Remove NSX Managers from cluster==--" BEFORE REMOVING Compute Mangers
 - import_playbook: playbooks/remove/07-remove-compute-managers.yml
 - import_playbook: playbooks/remove/08-remove-nsxmanager-vip.yml
-# "--==You must manually Remove NSX Managers from cluster==--"
+
 ...
