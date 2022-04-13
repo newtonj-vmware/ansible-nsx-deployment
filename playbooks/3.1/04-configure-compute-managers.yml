@@ -15,10 +15,7 @@
         display_name: "{{ item.display_name }}"
         server: "{{ item.server }}"
         origin_type: "{{ item.origin_type }}"
-        credential:
-          credential_type: "{{ item.credential_type }}"
-          username: "{{ item.username }}"
-          password: "{{ item.password }}"
+        credential: "{{ item.credentials }}"
         state: "{{ state }}"
       with_items: 
         - "{{compute_managers}}"
