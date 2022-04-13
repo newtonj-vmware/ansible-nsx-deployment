@@ -36,7 +36,7 @@ nsx_ova_file: "nsx-unified-appliance-3.2.0.1.0.19232400.ova"              ## NSX
 nsx_size: "small"                                                         ## Size of NSX Manager (extrasmall (not really used) / small / medium / large) [must be lower case]
 nsx_virtual_machine_name: "NSX-Manager-01"                                ## How the VM will be displayed in vCenter
 nsx_hostname: "NSX-Manager-01"                                            ## This hostname will be used for deployment and status checks
-nsx_domain: 'lab.local'                                                   ## Domain will be added to nsx_hostname for deployment to give FQDN calls
+nsx_domain: 'vmware.lab'                                                  ## Domain will be added to nsx_hostname for deployment to give FQDN calls
 nsx_deployment_vcenter: "10.255.10.100"                                   ## Deploys NSX Manger OVA to this vCenter (IP or FQDN)
 nsx_deployment_vcenter_username: "administrator@vsphere.local"            ## User used to connect to vCenter
 nsx_deployment_vcenter_password: "VMware$123"                             ## Password used to connect to vCenter
@@ -62,40 +62,40 @@ nsx_validate_certs: False                                                 ## Che
 ## Compute Managers Section (dynamic)
 ## Used for playbook 04
 compute_managers:                                                         ## Each new Compute Manager will start with - display_name
-- display_name: "nsx-vc"                                                  ## Display Name of this new Compute Manager (Name of how you see this Compute Manager)
-  server: "nsx-vc.lab.local"                                              ## This is the IP / FQDN of the new Compute Manager
+- display_name: "nsx-vcenter"                                             ## Display Name of this new Compute Manager (Name of how you see this Compute Manager)
+  server: "nsx-vcenter.vmware.lab"                                        ## This is the IP / FQDN of the new Compute Manager
   origin_type: "vCenter"                                                  ## Type of Compute Manager (Shouldn't need to change)
   credential_type: UsernamePasswordLoginCredential                        ## Follows the above (Shouldn't need to change)
   username: "administrator@vsphere.local"                                 ## User to use to connect to this new Compute Manager
   password: "VMware$123"                                                  ## Password for user used to connect to this Compute Manager
 ## Start of 2nd Compute Manager
 - display_name: "vCenter"
-  server: "vcenter.lab.local"
-  origin_type: "vCenter"
+  server: "dev-vcenter.vmware.lab"
+  origin_type: "Dev vCenter"
   credential_type: UsernamePasswordLoginCredential
   username: "administrator@vsphere.local"
   password: "VMware$123"
 
 ## Uplink Profiles Section (dynamic)
 ## Used for playbook 05
-uplink_profiles:                                                            ## Each new Uplink Profile will start with - display_name
-- display_name: "UP-ESXi-MTEP"                                              ## Display Name of this new Uplink Profile
-  mtu: "1700"                                                               ## MTU (1280-9000) Note: MTU is not applicable for VDS, this varible is ignored unless playbook 05 is changed (Use Global MTU)
-  teaming:                                                                  ## Teamings section of Uplink Profiles - [Default Teaming] (active_list / standby_list [if needed])
-    active_list:                                                            ## Active Uplinks section of Uplink Profiles
-    - uplink_name: "vmnic0"                                                 ## Name under Active Uplinks
-      uplink_type: PNIC                                                     ## PNIC or LAG
-    - uplink_name: "vmnic1"                                                 ## If adding a 2nd NIC for Multiple TEPs
-      uplink_type: PNIC                                                     ## PNIC or LAG
-    policy: LOADBALANCE_SRCID                                               ## Teaming Policy (LOADBALANCE_SRCRD / FAILOVER_ORDER / LOADBALANCE_SRC_MAC)
-  transport_vlan: 140                                                       ## Transport VLAN (VLAN TEPs will use)
-  named_teamings:                                                           ## Named Teamings - Teamings outside of [Default Teaming] (active_list / standby_list [if needed])
-  - name: "TOR-1"                                                           ## Name for this Teaming
-    active_list:                                                            ## Active Uplinks section of Uplink Profiles
-      - uplink_name: "vmnic0"                                               ## Name under Active Uplinks
-        uplink_type: PNIC                                                   ## PNIC or LAG
-    policy: FAILOVER_ORDER                                                  ## Teaming Policy (LOADBALANCE_SRCRD / FAILOVER_ORDER / LOADBALANCE_SRC_MAC)
-  - name: "TOR-2"                                                           ## 2nd Named Teaming Policy for this Teaming (Follows like the first)
+uplink_profiles:                                                          ## Each new Uplink Profile will start with - display_name
+- display_name: "UP-ESXi-MTEP"                                            ## Display Name of this new Uplink Profile
+  mtu: "1700"                                                             ## MTU (1280-9000) Note: MTU is not applicable for VDS, this varible is ignored unless playbook 05 is changed (Use Global MTU)
+  teaming:                                                                ## Teamings section of Uplink Profiles - [Default Teaming] (active_list / standby_list [if needed])
+    active_list:                                                          ## Active Uplinks section of Uplink Profiles
+    - uplink_name: "vmnic0"                                               ## Name under Active Uplinks
+      uplink_type: PNIC                                                   ## PNIC or LAG
+    - uplink_name: "vmnic1"                                               ## If adding a 2nd NIC for Multiple TEPs
+      uplink_type: PNIC                                                   ## PNIC or LAG
+    policy: LOADBALANCE_SRCID                                             ## Teaming Policy (LOADBALANCE_SRCRD / FAILOVER_ORDER / LOADBALANCE_SRC_MAC)
+  transport_vlan: 140                                                     ## Transport VLAN (VLAN TEPs will use)
+  named_teamings:                                                         ## Named Teamings - Teamings outside of [Default Teaming] (active_list / standby_list [if needed])
+  - name: "TOR-1"                                                         ## Name for this Teaming
+    active_list:                                                          ## Active Uplinks section of Uplink Profiles
+      - uplink_name: "vmnic0"                                             ## Name under Active Uplinks
+        uplink_type: PNIC                                                 ## PNIC or LAG
+    policy: FAILOVER_ORDER                                                ## Teaming Policy (LOADBALANCE_SRCRD / FAILOVER_ORDER / LOADBALANCE_SRC_MAC)
+  - name: "TOR-2"                                                         ## 2nd Named Teaming Policy for this Teaming (Follows like the first)
     active_list:                                                            
       - uplink_name: "vmnic1"                                               
         uplink_type: PNIC                                                   
@@ -122,7 +122,7 @@ uplink_profiles:                                                            ## E
       - uplink_name: "fp-eth1"
         uplink_type: PNIC
     policy: FAILOVER_ORDER  
-#
+## Start of 3rd Uplink Profile
 - display_name: "UP-ESXi-STEP"
   mtu: "1700"
   teaming:
@@ -134,7 +134,7 @@ uplink_profiles:                                                            ## E
       uplink_type: PNIC
     policy: FAILOVER_ORDER
   transport_vlan: 140
-# ##
+## Start of 4th Uplink Profile
 - display_name: "UP-EDGE-STEP"
   mtu: "1700"
   teaming:
@@ -185,14 +185,6 @@ transportzones:                                                           ## Eac
   uplink_teaming_policy_names:                                            ## Name of the Named Teaming Policies defined in Uplink Profile Sections named_teamings/name (MUST BE type transport_type: VLAN)
   - "TOR-1"                                                               ## 1st Named Teaming Policy
   - "TOR-2"                                                               ## 2nd Named Teaming Policy
-## Transport Zone Uplink Teaming Policy (dynamic)
-## Used for playbook 08 (NOT REQUIRED) ## Playbook 08 in deploy YAML file if not needed
-# transportzones_named_teaming_policy:                                      ## Each Named Teaming Policy will start with - display_name
-# - display_name: "nsx-vlan-transportzone"                                  ## Name of the Transport Zone you're attaching to the Named Teaming Policy to (MUST BE type VLAN)
-#   description: "Ansible Created NSX VLAN Transportzone"                   ## If not present it will overwrite old description from 07 playbook
-#   uplink_teaming_policy_names:                                            ## Name of the Named Teaming Policies defined in Uplink Profile Sections named_teamings/name
-#   - "TOR-1"                                                               ## 1st Named Teaming Policy
-#   - "TOR-2"                                                               ## 2nd Named Teaming Policy
 
 ## Transport Node Profiles (dynamic)
 ## Used for playbook 09
@@ -226,13 +218,13 @@ transport_node_profiles:                                                  ## Eac
 host_transport_nodes:                                                     ## Each Host Transport Node will start with - display_name (Note The same TNP can be used over and over again, display_name MUST be unique for EACH cluster and only a single cluster per display_name)
 - display_name: "TNC1"                                                    ## Display name (Not seen in UI)
   description: "Transport Node Collections 1"                             ## Description of this Transport Node Collection
-  compute_manager_name: "nsx-vc"                                          ## Compute Manager Name (Defined in Compute Managers Section compute_manages/display_name)
+  compute_manager_name: "nsx-vcenter"                                     ## Compute Manager Name (Defined in Compute Managers Section compute_manages/display_name)
   cluster_name: "Cluster-1"                                               ## Cluster Name - Must be a cluster inside the selected Compute Manager (Note only 1 cluster per display_name)
   transport_node_profile_name: "TNP-Compute"                              ## Name of TNP (Defined in Transport Node Profiles Section transport_node_profiles/display_name)
 #2nd Cluster to apply Transport Node Profile
 - display_name: "TNC2"                                                    ## 2nd Display Name - Needed if doing multiple clusters with TNPs
   description: "Transport Node Collections 2"
-  compute_manager_name: "nsx-vc"
+  compute_manager_name: "nsx-vcenter"
   cluster_name: "Cluster-2"                                               ## 2nd Cluster to use this TNP
   transport_node_profile_name: "TNP-Compute"
 
@@ -258,14 +250,14 @@ edge_transport_nodes:                                                     ## Eac
       resource_type: "StaticIpPoolSpec"                                   ## StaticIpPoolSpec / StaticIpListSpec / AssignedByDhcp (Answerfile / Playbook will follow standard StaticIpPoolSpec)
       ip_pool_name: "IP-EDGE-TEP-Pool"                                    ## Name of Static IP Pool (Defined IP Pools Section ip_pools/display_name)
     transport_zone_endpoints:                                             ## Which Transport Zones are going to be connected to this Edge Transport Node (Defined in Transport Zone Section transportzones/display_name)
-      - transport_zone_name: "nsx-overlay-transportzone"                  ## 1st connected Transport Zone Name
+      - transport_zone_name: "nsx-overlay-transportzone"                  ## 1st connected Transport Zone Name 
       - transport_zone_name: "nsx-vlan-transportzone"                     ## 2nd connected Transport Zone Name
   node_deployment_info:                                                   ## Edge Transport Node VM deployment info
     resource_type: "EdgeNode"                                             ## Type EdgeNode
     node_settings:                                                        ## VM deployment settings (Note - Watch the syntax here most objects are of "list" type, meaning they have a - in front of the object)
-      hostname: "Edge-Node-01.lab.local"                                  ## Edge Transport Node hostname FQDN
+      hostname: "Edge-Node-01.vmware.lab"                                 ## Edge Transport Node hostname FQDN
       search_domains:                                                     ## DNS Search Domains
-      - "lab.local"                                                       ## 1st DNS Search Name
+      - "vmware.lab"                                                      ## 1st DNS Search Name
       dns_servers:                                                        ## DNS Servers
       - "10.255.10.200"                                                   ## 1st DNS IP Address
       - "10.255.10.201"                                                   ## 2nd DNS IP Address
@@ -282,7 +274,7 @@ edge_transport_nodes:                                                     ## Eac
         root_password: "NSX$321nsx$321"                                   ## Root password
       vm_deployment_config:                                               ## Edge Transport Node Deployment info
         placement_type: VsphereDeploymentConfig                           ## VsphereDeploymentConfig
-        vc_name: "nsx-vc"                                                 ## vCenter where Edge Node will be deployed  - Must be to a Compute Manager (Defined in Compute Managers Section compute_managers/display_name)
+        vc_name: "nsx-vcenter"                                            ## vCenter where Edge Node will be deployed  - Must be to a Compute Manager (Defined in Compute Managers Section compute_managers/display_name)
         vc_username: "administrator@vsphere.local"                        ## vCenter user name for connection (Not required but have had errors when not configured YMMV - Around deployment with reservation_info active)
         vc_password: "VMware$123"                                         ## vCenter user password (Not required but have had errors when not configured YMMV - Around deployment with reservation_info activeS)
         data_networks:                                                    ## Data_networks will tie your VDS Portgroup to your Uplinks defined in host_switch_profiles/name and PNICS area.  This is the "DPDK Fastpath Interfaces" section
@@ -328,9 +320,9 @@ edge_transport_nodes:                                                     ## Eac
   node_deployment_info:
     resource_type: "EdgeNode"
     node_settings:
-      hostname: "Edge-Node-02.lab.local"
+      hostname: "Edge-Node-02.vmware.lab"
       search_domains:
-      - "lab.local"
+      - "vmware.lab"
       dns_servers:
       - "10.255.10.200"
       ntp_servers:
@@ -345,7 +337,7 @@ edge_transport_nodes:                                                     ## Eac
         root_password: "NSX$321nsx$321"
       vm_deployment_config:
         placement_type: VsphereDeploymentConfig
-        vc_name: "nsx-vc"
+        vc_name: "nsx-vcenter"
         vc_username: "administrator@vsphere.local"
         vc_password: "VMware$123"
         data_networks:
@@ -391,7 +383,7 @@ addional_nsx_managers:                                                    ## Eac
     vc_name: "vCenter"                                                    ## vCenter to deploy this NSX Manager (Must be a configured Compute Manager)
     vc_username: "administrator@vsphere.local"                            ## vCenter user
     vc_password: "VMware$123"                                             ## vCenter password
-    hostname: "NSX-Manager-02.lab.local"                                  ## FQDN Host Name (Will be deployed to vCenter with short name)
+    hostname: "NSX-Manager-02.vmware.lab"                                 ## FQDN Host Name (Will be deployed to vCenter with short name)
     compute: "Cluster1"                                                   ## vCenter Cluster where NSX Manager will be deployed to
     storage: "Datastore-01"                                               ## vCenter Datastore where NSX Manager will be deployed to 
     management_network: "Management-Portgroup"                            ## Portgroup for Management Network  
@@ -416,7 +408,7 @@ addional_nsx_managers:                                                    ## Eac
     vc_name: "vCenter"
     vc_username: "administrator@vsphere.local"
     vc_password: "VMware$123"
-    hostname: "NSX-Manager-03.lab.local"
+    hostname: "NSX-Manager-03.vmware.lab"
     compute: "Cluster1"
     storage: "Datastore-01"
     management_network: "Management-Portgroup"
