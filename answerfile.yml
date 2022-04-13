@@ -64,17 +64,19 @@ nsx_validate_certs: False                                                 ## Che
 compute_managers:                                                         ## Each new Compute Manager will start with - display_name
 - display_name: "nsx-vcenter"                                             ## Display Name of this new Compute Manager (Name of how you see this Compute Manager)
   server: "nsx-vcenter.vmware.lab"                                        ## This is the IP / FQDN of the new Compute Manager
-  origin_type: "vCenter"                                                  ## Type of Compute Manager (Shouldn't need to change)
-  credential_type: UsernamePasswordLoginCredential                        ## Follows the above (Shouldn't need to change)
-  username: "administrator@vsphere.local"                                 ## User to use to connect to this new Compute Manager
-  password: "VMware$123"                                                  ## Password for user used to connect to this Compute Manager
+  origin_type: "vCenter"                                                  ## Type of Compute Manager (vCenter)
+  credentials:
+    credential_type: UsernamePasswordLoginCredential                      ## Possible values are 'UsernamePasswordLoginCredential', 'VerifiableAsymmetricLoginCredential', 'SessionLoginCredential'
+    username: "administrator@vsphere.local"                               ## User to use to connect to this new Compute Manager
+    password: "VMware1!"                                                  ## Password for user used to connect to this Compute Manager
 ## Start of 2nd Compute Manager
 - display_name: "vCenter"
   server: "dev-vcenter.vmware.lab"
   origin_type: "Dev vCenter"
-  credential_type: UsernamePasswordLoginCredential
-  username: "administrator@vsphere.local"
-  password: "VMware$123"
+  credentials:
+    credential_type: UsernamePasswordLoginCredential
+    username: "administrator@vsphere.local"
+    password: "VMware$123"
 
 ## Uplink Profiles Section (dynamic)
 ## Used for playbook 05
