@@ -1,0 +1,41 @@
+---
+- hosts: 127.0.0.1
+  name: 05 - Create NSX Uplink Profiles
+  gather_facts: false
+  vars_files: 
+    - ../../answerfile.yml
+
+  tasks:
+    - name: Create Uplink Profiles with Named Teamings
+      vmware.ansible_for_nsxt.nsxt_uplink_profiles:
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        resource_type: "UplinkHostSwitchProfile"
+        display_name: "{{ item.display_name }}"
+        #mtu: "{{ item.mtu }}"
+        teaming: "{{ item.teaming }}"
+        transport_vlan: "{{ item.transport_vlan }}"
+        named_teamings: "{{ item.named_teamings }}"
+        state: "{{ state }}"
+      with_items: 
+        - "{{ uplink_profiles }}"
+      when: (item.named_teamings is defined)
+
+    - name: Create Uplink Profiles without Named Teaming 
+      vmware.ansible_for_nsxt.nsxt_uplink_profiles:
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        resource_type: "UplinkHostSwitchProfile"
+        display_name: "{{ item.display_name }}"
+        #mtu: "{{ item.mtu }}"
+        teaming: "{{ item.teaming }}"
+        transport_vlan: "{{ item.transport_vlan }}"
+        state: "{{ state }}"
+      with_items: 
+        - "{{ uplink_profiles }}"
+      when: (item.named_teamings is not defined)
+...   

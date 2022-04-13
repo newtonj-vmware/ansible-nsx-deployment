@@ -1,0 +1,26 @@
+---
+- hosts: 127.0.0.1
+  name: 02 - Configure NSX VIP (Virtual IP Address)
+  gather_facts: false
+  vars_files:
+    - ../../answerfile.yml
+
+  tasks:
+    - name: Configure NSX Manager VIP
+      vmware.ansible_for_nsxt.nsxt_virtual_ip:
+          hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+          username: "{{ nsx_admin_user }}"
+          password: "{{ nsx_admin_password }}"
+          validate_certs: "{{ nsx_validate_certs }}"
+          virtual_ip_address: "{{ nsx_vip }}"
+          state: "{{ state }}"
+
+ # Checks that the NSX Manager is available prior to proceeding
+    - name: Checking NSX Manager VIP (Virtual IP) Status
+      vmware.ansible_for_nsxt.nsxt_manager_status:
+          hostname: "{{ nsx_vip }}"
+          username: "{{ nsx_admin_user }}"
+          password: "{{ nsx_admin_password }}"
+          validate_certs: "{{ nsx_validate_certs }}"
+          wait_time: 30
+...

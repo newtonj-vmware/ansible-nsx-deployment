@@ -1,0 +1,43 @@
+---
+- hosts: 127.0.0.1
+  name: 01 - Deploy the NSX Manager to a vCenter environment
+  gather_facts: False
+  vars_files: 
+    - ../../answerfile.yml
+  tasks:
+    - name: Deploy NSX Manager OVA
+      vmware.ansible_for_nsxt.nsxt_deploy_ova:
+        ovftool_path: "{{ ovftool_path }}"
+        path_to_ova: "{{ nsx_ova_path }}"
+        ova_file: "{{ nsx_ova_file }}"
+        deployment_size: "{{ nsx_size }}"
+        vmname: "{{ nsx_virtual_machine_name }}"
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        dns_domain: "{{ nsx_domain }}"
+        vcenter: "{{ nsx_deployment_vcenter }}"
+        vcenter_user: "{{ nsx_deployment_vcenter_username }}"
+        vcenter_passwd: "{{ nsx_deployment_vcenter_password }}"
+        portgroup: "{{ nsx_port_group }}"
+        ip_address: "{{ nsx_ip_address }}"
+        netmask: "{{ nsx_netmask }}"
+        gateway: "{{ nsx_gateway }}"
+        dns_server: "{{ nsx_dns_server }}"
+        ntp_server: "{{ nsx_ntp_server }}"
+        role: "{{ nsx_role }}"
+        admin_password: "{{ nsx_admin_password }}"
+        cli_password: "{{ nsx_cli_password }}"
+        ssh_enabled: "{{ nsx_ssh_enabled }}"
+        allow_ssh_root_login: "{{ nsx_ssh_root_login }}"
+        datacenter: "{{ nsx_datacenter_name }}"
+        cluster: "{{ nsx_vcenter_cluster }}"
+        datastore: "{{ nsx_datastore }}"
+  
+    - name: Checking NSX Manager Status - Waiting until NSX Manager is Up
+      vmware.ansible_for_nsxt.nsxt_manager_status:
+          hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+          username: "{{ nsx_admin_user }}"
+          password: "{{ nsx_admin_password }}"
+          validate_certs: "{{ nsx_validate_certs }}"
+          #Amount of time (minutes) the task will wait for the NSX Manager to come back ready
+          wait_time: 30
+...

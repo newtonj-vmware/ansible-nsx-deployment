@@ -1,0 +1,21 @@
+---
+- hosts: 127.0.0.1
+  name: 06 - Create NSX IP Pools
+  gather_facts: false
+  vars_files:
+    - ../../answerfile.yml
+
+  tasks:
+    - name: Create IP Pools
+      vmware.ansible_for_nsxt.nsxt_policy_ip_pool:
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        display_name: "{{ item.display_name }}"
+        description: "{{ item.description }}"
+        pool_static_subnets: "{{ item.subnets }}"
+        state: "{{ state }}"
+      with_items: 
+        - "{{ ip_pools }}"
+...
