@@ -187,7 +187,7 @@ transportzones:                                                           ## Eac
   - "TOR-2"                                                               ## 2nd Named Teaming Policy
 
 ## Transport Node Profiles (dynamic)
-## Used for playbook 09
+## Used for playbook 08
 ## Should call already created objects
 transport_node_profiles:                                                  ## Each Transport Node Profile (TNP) will start with - display_name
 - display_name: "TNP-Compute"                                             ## Display Name of Transport Node Profile
@@ -212,7 +212,7 @@ transport_node_profiles:                                                  ## Eac
     - transport_zone_name: "nsx-vlan-transportzone"                       ## 2nd connected Transport Zone Name
 
 ## Configure Host Transport Nodes (dynamic)
-## Used for playbook 10
+## Used for playbook 09
 ## Unique display_name for each vCenter cluster - Cannot deploy to multiple clusters under one display_name
 ## This is a Manual Removal process (state of absent) will NOT remove, it will just "Detach Transport Node Profile"
 host_transport_nodes:                                                     ## Each Host Transport Node will start with - display_name (Note The same TNP can be used over and over again, display_name MUST be unique for EACH cluster and only a single cluster per display_name)
@@ -229,7 +229,7 @@ host_transport_nodes:                                                     ## Eac
   transport_node_profile_name: "TNP-Compute"
 
 ## Deploy Edge Nodes (dynamic)
-## Used for playbook 11
+## Used for playbook 10
 ## Should call already created objects
 edge_transport_nodes:                                                     ## Each Edge Transport Node will start with - display_name (Meaning a new VM based Edge Transport Node will be deployed)
 ## Start of 1st Edge Node Configuration
@@ -292,7 +292,6 @@ edge_transport_nodes:                                                     ## Eac
         reservation_info:                                                 ## Reservation Config Area
           memory_reservation:                                             ## Memory Reservation Area
             reservation_percentage: 0                                     ## Memory Reservation Percentage (100 is default [100%] however in lab deployments 0 can be used)
-          
 ##
 ## Start of 2nd Edge Node Configuration
 ##       
@@ -357,7 +356,7 @@ edge_transport_nodes:                                                     ## Eac
             reservation_percentage: 0                                    ## Memory Reservation Percentage (100 is default [100%] however in lab deployments 0 can be used)
    
 ## Edge Cluster Configuration (dynamic)
-## Used for playbook 12
+## Used for playbook 11
 edge_clusters:                                                            ## Each Edge Cluster will start with - display_name
 - display_name: "Edge-Cluster-01"                                         ## Display name of Edge Cluster
   description: "Ansible provisionned - Edge Cluster"                      ## Description of Edge Cluster
@@ -369,7 +368,7 @@ edge_clusters:                                                            ## Eac
     - transport_node_name: "Edge-Node-02"                                 ## 2nd Edge Transport Node
 
 ## Deploy Addional NSX Managers and Join to Cluster
-## Used for playbook 13
+## Used for playbook 12
 ## This playbook will call a connected Compute Manager
 ## This is a Manual Removal process (state of absent) will NOT remove
 addional_nsx_managers:                                                    ## Each new NSX Manager deployed to current NSX Manager Cluster starts with - nsx_size
@@ -397,7 +396,6 @@ addional_nsx_managers:                                                    ## Eac
     - "10.255.10.200"                                                     ## 1st DNS Server IP Address
     enable_ssh: True                                                      ## Enable SSH Access (Should be disabled - Security Yo!)
     allow_ssh_root_login: True                                            ## Allow Root Login over SSH (Should be disabled - Security Yo!)
-
 ## 3rd NSX Manager
 - nsx_size: "SMALL"
   user_settings:
@@ -422,5 +420,4 @@ addional_nsx_managers:                                                    ## Eac
     - "10.255.10.200"
     enable_ssh: True
     allow_ssh_root_login: True
-    
 ...
