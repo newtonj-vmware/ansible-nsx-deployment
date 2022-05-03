@@ -19,6 +19,7 @@
   ## If you do NOT want a section to run ## out the - import_playbook line in the deploy YAML file. (deploy-nsx-32.yml)
   ## Confirmed working for 3.1.3.7 and 3.2.0.1
 
+
 ## Ansibe Variables
 ## Global State can be present (build) or absent (remove) (Used for all playbooks)
 state: "present"                                                          #

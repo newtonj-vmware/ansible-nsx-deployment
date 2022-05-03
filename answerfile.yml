@@ -136,6 +136,17 @@ uplink_profiles:                                                          ## Eac
     - uplink_name: "vmnic1"
       uplink_type: PNIC
     policy: FAILOVER_ORDER
+  named_teamings:                                                      
+  - name: "TOR-1"                                                      
+    active_list:                                                       
+      - uplink_name: "vmnic0"
+        uplink_type: PNIC                                              
+    policy: FAILOVER_ORDER                                             
+  - name: "TOR-2"                                                      
+    active_list:                                                            
+      - uplink_name: "vmnic1"                                               
+        uplink_type: PNIC                                                   
+    policy: FAILOVER_ORDER
   transport_vlan: 140
 ## Start of 4th Uplink Profile
 - display_name: "UP-EDGE-STEP"
@@ -144,11 +155,19 @@ uplink_profiles:                                                          ## Eac
     active_list:
     - uplink_name: "fp-eth0"
       uplink_type: PNIC
-    standby_list:
-    - uplink_name: "fp-eth1"
-      uplink_type: PNIC
     policy: FAILOVER_ORDER
   transport_vlan: 141
+  named_teamings:
+  - name: "TOR-1"
+    active_list:
+      - uplink_name: "fp-eth0"
+        uplink_type: PNIC
+    policy: FAILOVER_ORDER
+  - name: "TOR-2"
+    active_list:
+      - uplink_name: "fp-eth1"
+        uplink_type: PNIC
+    policy: FAILOVER_ORDER
 
 ## IP Pools Section (dynamic)
 ## Used for playbook 06

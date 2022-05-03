@@ -16,7 +16,7 @@
 - import_playbook: playbooks/3.2/06-configure-nsxmanager-ippools.yml
 - import_playbook: playbooks/3.2/07-configure-nsxmanager-transportzones.yml
 - import_playbook: playbooks/3.2/08-configure-nsxmanager-transportnodesprofiles.yml
-- import_playbook: playbooks/3.2/09-configure-nsxmanager-transportnodes.yml
+#- import_playbook: playbooks/3.2/09-configure-nsxmanager-transportnodes.yml
 - import_playbook: playbooks/3.2/10-deploy-edgenodes.yml
 - import_playbook: playbooks/3.2/11-configure-nsxmanager-edgeclusters.yml
 #- import_playbook: playbooks/3.2/12-deploy-nsxmanager-cluster.yml

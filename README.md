@@ -31,3 +31,9 @@ Specify latest supported release branch
 ```
 ansible-galaxy collection install git+https://github.com/vmware/ansible-for-nsxt.git,v3.2.0
 ```
+## Usage
+
+Please do NOT populate the answerfile.yml, so that you can use git pull to get latest files.   Save file with deployment name e.g. mylab01-answerfile.yml
+
+Use the -e @mylab01-answerfile.yml for deployments - 
+Example: ansible-playbook -e @answerfile-lab1.yml -e nsx_liscense="XXXXX-XXXXX-XXXXX-XXXXX-XXXXX" deploy-nsx-32.yml  (Add different license)

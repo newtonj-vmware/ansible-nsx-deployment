@@ -1,0 +1,41 @@
+---
+- hosts: 127.0.0.1
+  name: 08 - Create NSX Transport Nodes Profiles
+  gather_facts: false
+  vars_files: 
+    - ../../answerfile.yml
+
+  tasks:
+    - name: Create Transport Node Profiles
+      vmware.ansible_for_nsxt.nsxt_transport_node_profiles:
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        resource_type: "TransportNodeProfile"
+        display_name: "TNP-Compute"
+        description: "Ansible provisioned - Transport Node Profile  - Compute"
+        host_switch_spec:
+          resource_type: "StandardHostSwitchSpec"
+          host_switches:                                                          ## Network configuration of this Transport Node Profile
+          - host_switch_profiles:                                                 ## 
+            - name: "UP-ESXi-MTEP"                                                ## Uplink Profile Name (Defined in Uplink Profile Section uplink_profiles/display_name)
+              type: "UplinkHostSwitchProfile"                                     ## Type: UplinkHostSwitchProfile or LldpHostSwitchProfile
+            host_switch_type: "VDS"                                               ## VDS or NVDS 
+            host_switch_name: "BlackMesa-VDS"                                      ## VDS Name 
+            host_switch_mode: "STANDARD"                                          ## STANDARD or ENS (Enhanced Data Path) or ENS_INTERRUPT
+            uplinks:                                                              ## Uplinks defined for this Transport Node Profile
+            - uplink_name: "vmnic0"                                               ## Follows the name given to Active Uplinks from selected Uplink Profile Name (Defined in Uplink Profile Section teaming/active_list/uplink_name)
+              vds_uplink_name: "dvUplink1"                                        ## Follows the VDS Uplink name if backing by VDS
+            - uplink_name: "vmnic1"                                               ## 2nd Follows the name given to Active Uplinks from selected Uplink Profile Name (Defined in Uplink Profile Section teaming/active_list/uplink_name) *If using Multiple TEPs
+              vds_uplink_name: "dvUplink2"                                        ## 2nd Follows the VDS Uplink name if backing by VDS *If using Multiple TEPs
+            ip_assignment_spec:                                                   ## IP Assignment (TEP) Section
+              resource_type: "StaticIpPoolSpec"                                   ## StaticIpPoolSpec / StaticIpListSpec / AssignedByDhcp (Answerfile / Playbook will follow standard StaticIpPoolSpec)
+              ip_pool_name: "IP-ESXi-TEP-Pool"                                    ## Name of Static IP Pool (Defined IP Pools Section ip_pools/display_name)
+            transport_zone_endpoints:                                             ## Which Transport Zones are going to be connected to this Transport Node Profile (Defined in Transport Zone Section transportzones/display_name)
+            - transport_zone_name: "nsx-overlay-transportzone"                    ## 1st connected Transport Zone Name
+            - transport_zone_name: "nsx-vlan-transportzone"      
+        state: "{{ state }}"
+      with_items:
+        - "{{ transport_node_profiles }}"
+...
