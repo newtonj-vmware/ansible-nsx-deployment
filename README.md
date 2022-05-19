@@ -3,7 +3,7 @@
 ## NSX Compatibility
 The following versions of NSX are supported:
 
-* NSX-T 3.2 (Tested against 3.2.0.1)
+* NSX-T 3.2 (Tested against 3.2.0.1 & 3.2.1) [5/19/2022]
 * NSX-T 3.1 (Tested against 3.1.3.7)
 * NSX-T 3.0 (Not Tested - Should Work)
 * NSX-T 2.5.1 (Not Tested - Time for you to upgrade... seriously.. 2.5?!?!) 
