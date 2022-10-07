@@ -1,0 +1,23 @@
+---
+- hosts: 127.0.0.1
+  name: 13 - Create VLAN Segments
+  gather_facts: false
+  vars_files:
+    - ../../answerfile.yml
+
+  tasks:
+    - name: Create VLAN Backed Uplinks Segments for Edge Nodes for deployment
+      vmware.ansible_for_nsxt.nsxt_policy_segment:
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        display_name: "{{ item.display_name }}"
+        transport_zone_display_name: "{{ item.transport_zone_display_name | default(required) }}"
+        vlan_ids: "{{ item.vlan_ids | default(required) }}"
+        admin_state: "{{ item.admin_state | default(omit) }}"
+        advanced_config: "{{ item.advanced_config | default(omit) }}"
+        state: "{{ state }}"
+      with_items:
+        - "{{ vlan_segments }}"
+...

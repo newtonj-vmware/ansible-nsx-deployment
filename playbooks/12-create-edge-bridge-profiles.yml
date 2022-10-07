@@ -1,0 +1,23 @@
+---
+- hosts: 127.0.0.1
+  name: 12 - Create Edge Bridge Profile
+  gather_facts: false
+  vars_files:
+    - ../../answerfile.yml
+
+  tasks:
+    - name: Creating Edge Bridge Profile
+      vmware.ansible_for_nsxt.nsxt_policy_l2_bridge_ep_profile:
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        display_name: "{{ item.display_name }}"
+        id: "{{ item.id | default(omit) }}"
+        description: "{{ item.description | default(omit) }}"
+        edge_nodes_info: "{{ item.edge_nodes_info | default(required) }}"
+        failover_mode: "{{ item.failover_mode | default(omit) }}"
+        state: "{{ state }}"
+      with_items:
+        - "{{ edge_bridge_profile }}"
+...

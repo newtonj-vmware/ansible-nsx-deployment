@@ -1,0 +1,49 @@
+---
+- hosts: 127.0.0.1
+  name: 14 - Create Tier0 Gateways
+  gather_facts: false
+  vars_files:
+    - ../../answerfile.yml
+
+  tasks:
+    - name: Create Tier0 Gateway
+      vmware.ansible_for_nsxt.nsxt_policy_tier0:
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        display_name: "{{ item.display_name }}"
+        locale_services: "{{ item.locale_services }}"
+        state: "{{ state }}"
+      with_items:
+        - "{{ tier0 }}"
+    # WIP
+    #   #BGP / Redistribution done AFTER Interfaces are created - done at once can create failures
+    # - name: Allowing Interfaces to come online
+    #   pause:
+    #     seconds: 10
+
+    # - name: Update Tier0 Gateway
+    #   vmware.ansible_for_nsxt.nsxt_policy_tier0:
+    #     hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+    #     username: "{{ nsx_admin_user }}"
+    #     password: "{{ nsx_admin_password }}"
+    #     validate_certs: "{{ nsx_validate_certs }}"
+    #     display_name: "{{ item.display_name }}"
+    #     locale_services:
+    #       BGP: "{{ item.BGP }}"
+    #     # locale_services:
+    #     # - state: "{{ state }}"
+    #     #   interfaces: "{{ item.interfaces | default(omit) }}"
+    #     # locale_services:
+    #     #   BGP: "{{ item.BGP }}"
+    #     # locale_services:
+    #     # - state: "{{ state }}"
+    #     #   route_redistribution_types: "{{ item.route_redistribution_types | default(omit) }}"
+    #     # locale_services:
+    #     # - state: "{{ state }}"
+    #     #   route_redistribution_config: "{{ item.route_redistribution_config | default(omit) }}"
+    #     state: "{{ state }}"
+    #   with_items:
+    #     - "{{ tier0 }}"
+...

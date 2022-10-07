@@ -1,4 +1,8 @@
 # NSX Lab-Deployment using Ansible -WIP-
+Please note this is a Work in Progress (WIP) - All files are set to run on the Ansible Control System (local) and is currently NOT using an ansible.cfg file.
+Not all Remove playbooks work (Tier0 removal)
+
+However it will fully deploy a NSX environment from nothing to fully deployed T0s/T1s and segments connected to either. 
 
 ## NSX Compatibility
 The following versions of NSX are supported:
@@ -30,11 +34,13 @@ ansible-galaxy collection install git+https://github.com/vmware/ansible-for-nsxt
 Specify latest supported release branch
 
 ```
-ansible-galaxy collection install git+https://github.com/vmware/ansible-for-nsxt.git,v3.2.0
+Pulling master collection due to error in the v3.2.0 branch
+ansible-galaxy collection install git+https://github.com/vmware/ansible-for-nsxt.git,master
 ```
 ## Usage
 
 Please do NOT populate the answerfile.yml, so that you can use git pull to get latest files.   Save file with deployment name e.g. mylab01-answerfile.yml
+A Copy of the answerfile.yml is also located in the example directory
 
 Use the -e @mylab01-answerfile.yml for deployments - 
 Example: ansible-playbook -e @answerfile-lab1.yml -e nsx_liscense="XXXXX-XXXXX-XXXXX-XXXXX-XXXXX" deploy-nsx-32.yml  (Add different license)

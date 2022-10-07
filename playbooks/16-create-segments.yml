@@ -1,0 +1,25 @@
+---
+- hosts: 127.0.0.1
+  name: 16 - Create Segments
+  gather_facts: false
+  vars_files:
+    - ../../answerfile.yml
+
+  tasks:
+    - name: Create Segments
+      vmware.ansible_for_nsxt.nsxt_policy_segment:
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        display_name: "{{ item.display_name }}"
+        transport_zone_display_name: "{{ item.transport_zone_display_name }}"
+        connectivity_path: "{{ item.connectivity_path | default(omit) }}"
+        subnets: "{{ item.subnets | default(omit) }}"
+        admin_state: "{{ item.admin_state | default(omit) }}"
+        advanced_config: "{{ item.advanced_config }}"
+        bridge_profiles: "{{ item.bridge_profiles | default(omit) }}"
+        state: "{{ state }}"
+      with_items:
+        - "{{ segments }}"
+...

@@ -1,0 +1,43 @@
+# WARNING WIP #
+---
+- hosts: 127.0.0.1
+  name: 12 - Create VLAN Backed Uplink Segments
+  gather_facts: false
+  vars_files:
+    - ../../answerfile.yml
+  tasks:
+    - name: Create VLAN Backed Uplinks Segments for Edge Nodes for deployment
+      vmware.ansible_for_nsxt.nsxt_policy_segment:
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        display_name: "{{ item.display_name }}"
+        # transport_zone_display_name: "{{ item.transport_zone_display_name }}"
+        # vlan_ids: "{{ item.vlan_ids }}"
+        # admin_state: "{{ item.admin_state }}"
+        # advanced_config: "{{ item.advanced_config }}"
+        state: "{{ state }}"
+      with_items:
+        - "{{ segments }}"
+    #   when: (item.connectivity_path is not defined)
+
+    # - name: Create Uplinks Segments for Edge Nodes for deployment
+    #   vmware.ansible_for_nsxt.nsxt_policy_segment:
+    #     hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+    #     username: "{{ nsx_admin_user }}"
+    #     password: "{{ nsx_admin_password }}"
+    #     validate_certs: "{{ nsx_validate_certs }}"
+    #     display_name: "{{ item.display_name }}"
+    #     transport_zone_display_name: "{{ item.transport_zone_display_name }}"
+    #     vlan_ids: "{{ item.vlan_ids }}"
+    #     admin_state: "{{ item.admin_state }}"
+    #     connectivity_path: "{{ item.connectivity_path }}"
+    #     subnets: "{{ item.subnets }}"
+    #     advanced_config: "{{ item.advanced_config }}"
+    #     address_bindings: "{{ item.address_bindings }}"
+    #     state: "{{ state }}"
+    #   with_items:
+    #     - "{{ segments }}"
+    #   when: (item.connectivity_path is defined)
+...

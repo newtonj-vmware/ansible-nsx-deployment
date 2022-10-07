@@ -1,3 +1,4 @@
+# WARNING WIP #
 ---
 - hosts: 127.0.0.1
   name: Remove NSX Deployment
@@ -5,6 +6,7 @@
   vars_files: 
     - answerfile.yml
 
+# Ensure ALL Segments, T1s and T0s are removed before running.
 # Quick way is to add Extra_Vars for removal - (e.g. ansisble-playbook -e @answerfile-deployment.yml -e state="absent") - This will overwrite your answerfile state to absent vs present
 # Infrastructure Deployment # 
 

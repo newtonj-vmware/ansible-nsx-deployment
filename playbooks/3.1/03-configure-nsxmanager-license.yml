@@ -2,16 +2,16 @@
 - hosts: 127.0.0.1
   name: 03 - Configure NSX License
   gather_facts: false
-  vars_files: 
+  vars_files:
     - ../../answerfile.yml
 
   tasks:
     - name: Apply license to NSX-T Manager
       vmware.ansible_for_nsxt.nsxt_licenses:
-          hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
-          username: "{{ nsx_admin_user }}"
-          password: "{{ nsx_admin_password }}"
-          validate_certs: "{{ nsx_validate_certs }}"
-          license_key: "{{ nsx_license }}"
-          state: "{{ state }}"
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        license_key: "{{ nsx_license }}"
+        state: "{{ state }}"
 ...

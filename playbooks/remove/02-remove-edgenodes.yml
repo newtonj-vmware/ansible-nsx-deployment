@@ -2,7 +2,7 @@
 - hosts: 127.0.0.1
   name: 02 - Remove NSX Edge Transport Nodes
   gather_facts: false
-  vars_files: 
+  vars_files:
     - ../../answerfile.yml
 
   tasks:

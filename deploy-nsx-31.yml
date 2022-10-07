@@ -1,12 +1,12 @@
 ---
 - hosts: 127.0.0.1
-  name: Test NSX Deployment
+  name: NSX 3.1.x Deployment
   gather_facts: false
-  vars_files: 
+  vars_files:
     - answerfile.yml
 
 
-# Infrastructure Deployment # 
+# Infrastructure Deployment #
 
 - import_playbook: playbooks/3.1/01-deploy-nsxmanager.yml
 - import_playbook: playbooks/3.1/02-configure-nsxmanager-vip.yml

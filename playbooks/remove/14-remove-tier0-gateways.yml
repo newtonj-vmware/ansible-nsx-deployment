@@ -1,0 +1,119 @@
+# # WARNING WIP DOES NOT WORK #
+---
+- hosts: 127.0.0.1
+  name: 14 - Remove Tier0 Gateway
+  gather_facts: false
+  vars_files:
+    - ../../answerfile.yml
+  tasks:
+#     - name: Create Tier0 Gateway
+#       vmware.ansible_for_nsxt.nsxt_policy_tier0:
+#         hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+#         username: "{{ nsx_admin_user }}"
+#         password: "{{ nsx_admin_password }}"
+#         validate_certs: "{{ nsx_validate_certs }}"
+#         display_name: "{{ item.display_name }}"
+#         locale_services:
+#         #- state: "present"
+#           BGP:
+#           - state: "present"
+#             neighbors:
+#             - state: "{{ state }}"
+#             #- "{{ item.BGP }}"
+#           #- state: "present"
+#         state: "present"
+#       with_items:
+#         - "{{ tier0 }}"
+# ...
+# ---
+# - hosts: 127.0.0.1
+#   name: 13 - Create Tier0 Gateway
+#   gather_facts: False
+#   vars_files:
+#     - ../../answerfile.yml
+#   tasks:
+#     - name: Create Tier0 Gateway
+#       vmware.ansible_for_nsxt.nsxt_policy_tier0:
+#         hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+#         username: "{{ nsx_admin_user }}"
+#         password: "{{ nsx_admin_password }}"
+#         validate_certs: "{{ nsx_validate_certs }}"
+#         display_name: "{{ item.display_name }}"
+#         locale_services: "{{ item.locale_services | default(omit) }}"
+#         # locale_services:
+#         # - state: "{{ state }}"
+#         #   interfaces: "{{ item.interfaces | default(omit) }}"
+#         # locale_services:
+#         # - state: "{{ state }}"
+#         #   BGP: "{{ item.BGP | default(omit) }}"
+#         # locale_services:
+#         # - state: "{{ state }}"
+#         #   route_redistribution_types: "{{ item.route_redistribution_types | default(omit) }}"
+#         # locale_services:
+#         # - state: "{{ state }}"
+#         #   route_redistribution_config: "{{ item.route_redistribution_config | default(omit) }}"
+#         state: "{{ state }}"
+#       with_items:
+#         - "{{ tier0 }}"
+
+    - name: Remove Tier0 Gateway BGP
+      vmware.ansible_for_nsxt.nsxt_policy_tier0:
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        display_name: "{{ item.display_name }}"
+        # locale_services: "{{ item.locale_services | default(omit) }}"
+        # locale_services:
+        # - state: "{{ state }}"
+        #   interfaces: "{{ item.interfaces | default(omit) }}"
+        locale_services:
+        - state: "{{ state }}"
+          BGP:
+            state: "{{ state }}"
+          # "{{ item.BGP | default(omit) }}"
+            neighbors:
+            - state: "{{ state }}"
+            enabled: false
+        # locale_services:
+        # - state: "{{ state }}"
+        #   route_redistribution_types: "{{ item.route_redistribution_types | default(omit) }}"
+        # locale_services:
+        # - state: "{{ state }}"
+        #   route_redistribution_config: "{{ item.route_redistribution_config | default(omit) }}"
+        state: "{{ state }}"
+      with_items:
+        - "{{ tier0 }}"
+
+    # - name: Remove Tier0 Gateway Interfaces
+    #   vmware.ansible_for_nsxt.nsxt_policy_tier0:
+    #     hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+    #     username: "{{ nsx_admin_user }}"
+    #     password: "{{ nsx_admin_password }}"
+    #     validate_certs: "{{ nsx_validate_certs }}"
+    #     display_name: "{{ item.display_name }}"
+    #     #locale_services: "{{ item.locale_services | default(omit) }}"
+    #     locale_services:
+    #     - state: "present"
+    #       interfaces: "{{ item.interfaces | default(omit) }}"
+    #     # locale_services:
+    #     # - state: "{{ state }}"
+    #     #   route_redistribution_types: "{{ item.route_redistribution_types | default(omit) }}"
+    #     # locale_services:
+    #     # - state: "{{ state }}"
+    #     #   route_redistribution_config: "{{ item.route_redistribution_config | default(omit) }}"
+    #     state: "{{ state }}"
+    #   with_items:
+    #     - "{{ tier0 }}"
+
+    # - name: Remove Tier0 Gateway
+    #   vmware.ansible_for_nsxt.nsxt_policy_tier0:
+    #     hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+    #     username: "{{ nsx_admin_user }}"
+    #     password: "{{ nsx_admin_password }}"
+    #     validate_certs: "{{ nsx_validate_certs }}"
+    #     display_name: "{{ item.display_name }}"
+    #     state: absent
+    #   with_items:
+    #     - "{{ tier0 }}"
+...
