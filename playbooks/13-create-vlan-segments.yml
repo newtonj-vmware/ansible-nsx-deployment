@@ -3,7 +3,7 @@
   name: 13 - Create VLAN Segments
   gather_facts: false
   vars_files:
-    - ../../answerfile.yml
+    - ../answerfile.yml
 
   tasks:
     - name: Create VLAN Backed Uplinks Segments for Edge Nodes for deployment

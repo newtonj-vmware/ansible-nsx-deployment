@@ -3,7 +3,7 @@
   name: 05 - Create NSX Uplink Profiles
   gather_facts: false
   vars_files:
-    - ../../answerfile.yml
+    - ../answerfile.yml
 
   tasks:
     - name: Create Uplink Profiles with Named Teamings

@@ -3,7 +3,7 @@
   name: 15 - Create Tier1 Gateways
   gather_facts: false
   vars_files:
-    - ../../answerfile.yml
+    - ../answerfile.yml
 
   tasks:
     - name: Create Tier0 Gateway

@@ -3,7 +3,7 @@
   name: 04 - Register a vCenter as a Compute Manager in NSX
   gather_facts: false
   vars_files:
-    - ../../answerfile.yml
+    - ../answerfile.yml
 
   tasks:
     - name: Register Compute Managers

@@ -3,7 +3,7 @@
   name: 10 - Deploy NSX Edge Transport Nodes
   gather_facts: false
   vars_files:
-    - ../../answerfile.yml
+    - ../answerfile.yml
 
   tasks:
     - name: Deploy and configure NSX Edge Transport Nodes - This operation will take some time

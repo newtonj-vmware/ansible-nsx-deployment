@@ -3,7 +3,7 @@
   name: 07 - Create NSX Transport Zones
   gather_facts: false
   vars_files:
-    - ../../answerfile.yml
+    - ../answerfile.yml
 
   tasks:
     - name: Create NSX Transport Zones

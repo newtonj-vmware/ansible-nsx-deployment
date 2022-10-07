@@ -3,7 +3,7 @@
   name: 03 - Configure NSX License
   gather_facts: false
   vars_files:
-    - ../../answerfile.yml
+    - ../answerfile.yml
 
   tasks:
     - name: Apply license to NSX-T Manager

@@ -3,7 +3,7 @@
   name: 09 - Configure NSX Transport Node Collection
   gather_facts: false
   vars_files:
-    - ../../answerfile.yml
+    - ../answerfile.yml
 
   tasks:
     - name: Create Transport Node Collection

@@ -3,7 +3,7 @@
   name: 12 - Deploy the NSX Managers to a cluster
   gather_facts: false
   vars_files:
-    - ../../answerfile.yml
+    - ../answerfile.yml
 
   tasks:
     - name: Deploying NSX Manager OVA and adding to cluster - This operation will take some time

@@ -3,7 +3,7 @@
   name: 06 - Create NSX IP Pools
   gather_facts: false
   vars_files:
-    - ../../answerfile.yml
+    - ../answerfile.yml
 
   tasks:
     - name: Create IP Pools

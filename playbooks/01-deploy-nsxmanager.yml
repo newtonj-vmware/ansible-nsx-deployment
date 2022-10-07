@@ -3,7 +3,7 @@
   name: 01 - Deploy the NSX Manager to a vCenter environment
   gather_facts: false
   vars_files:
-    - ../../answerfile.yml
+    - ../answerfile.yml
   tasks:
     - name: Deploy NSX Manager OVA
       vmware.ansible_for_nsxt.nsxt_deploy_ova:

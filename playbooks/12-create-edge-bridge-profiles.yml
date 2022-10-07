@@ -3,7 +3,7 @@
   name: 12 - Create Edge Bridge Profile
   gather_facts: false
   vars_files:
-    - ../../answerfile.yml
+    - ../answerfile.yml
 
   tasks:
     - name: Creating Edge Bridge Profile
