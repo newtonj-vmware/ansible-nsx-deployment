@@ -1,21 +1,23 @@
 ---
 - hosts: 127.0.0.1
-  name: 06 - Remove NSX Uplink Profiles
+  name: 05 - Create NSX Uplink Profiles
   gather_facts: false
   vars_files:
     - ../../answerfile.yml
 
   tasks:
-    - name: Remove Uplink Profiles
+    - name: Create Uplink Profiles with Named Teamings
       vmware.ansible_for_nsxt.nsxt_uplink_profiles:
         hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
         username: "{{ nsx_admin_user }}"
         password: "{{ nsx_admin_password }}"
         validate_certs: "{{ nsx_validate_certs }}"
         resource_type: "UplinkHostSwitchProfile"
-        display_name: "{{ item.display_name }}"
+        display_name: "{{ item.display_name | default(omit) }}"
+        # mtu: "{{ item.mtu }}"
         teaming: "{{ item.teaming }}"
         transport_vlan: "{{ item.transport_vlan }}"
+        named_teamings: "{{ item.named_teamings | default(omit) }}"
         state: "{{ state }}"
       with_items:
         - "{{ uplink_profiles }}"

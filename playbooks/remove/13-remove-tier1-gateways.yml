@@ -1,23 +1,19 @@
+# WARNING WIP #
 ---
 - hosts: 127.0.0.1
-  name: 04 - Remove NSX Transport Zones
+  name: 13 - Remove Tier1 Gateways
   gather_facts: false
   vars_files:
     - ../../answerfile.yml
-
   tasks:
-    - name: Remove NSX Transport Zones
-      vmware.ansible_for_nsxt.nsxt_transport_zones:
+    - name: Remove Tier1 Gateway
+      vmware.ansible_for_nsxt.nsxt_policy_tier1:
         hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
         username: "{{ nsx_admin_user }}"
         password: "{{ nsx_admin_password }}"
         validate_certs: "{{ nsx_validate_certs }}"
-        resource_type: "TransportZone"
         display_name: "{{ item.display_name }}"
-        description: "{{ item.description }}"
-        # host_switch_mode: "STANDARD" # PRE 3.2
-        transport_type: "{{ item.transport_type }}"
         state: "{{ state }}"
       with_items:
-        - "{{ transportzones }}"
+        - "{{ tier1 }}"
 ...

@@ -16,6 +16,6 @@
         description: "{{ item.description }}"
         pool_static_subnets: "{{ item.subnets }}"
         state: "{{ state }}"
-      with_items: 
+      with_items:
         - "{{ ip_pools }}"
 ...

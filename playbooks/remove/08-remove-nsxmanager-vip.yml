@@ -8,10 +8,10 @@
   tasks:
     - name: Remove NSX Manager VIP
       vmware.ansible_for_nsxt.nsxt_virtual_ip:
-          hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
-          username: "{{ nsx_admin_user }}"
-          password: "{{ nsx_admin_password }}"
-          validate_certs: "{{ nsx_validate_certs }}"
-          virtual_ip_address: "{{ nsx_vip }}"
-          state: "{{ state }}"
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        virtual_ip_address: "{{ nsx_vip }}"
+        state: "{{ state }}"
 ...

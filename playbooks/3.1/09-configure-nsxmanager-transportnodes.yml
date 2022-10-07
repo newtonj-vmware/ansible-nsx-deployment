@@ -2,7 +2,7 @@
 - hosts: 127.0.0.1
   name: 09 - Configure NSX Transport Node Collection
   gather_facts: false
-  vars_files: 
+  vars_files:
     - ../../answerfile.yml
 
   tasks:
@@ -19,6 +19,6 @@
         cluster_name: "{{ item.cluster_name }}"
         transport_node_profile_name: "{{ item.transport_node_profile_name }}"
         state: "{{ state }}"
-      with_items: 
+      with_items:
         - "{{ host_transport_nodes }}"
 ...
