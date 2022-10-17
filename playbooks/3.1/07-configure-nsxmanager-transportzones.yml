@@ -1,5 +1,5 @@
 ---
-- hosts: 127.0.0.1
+- hosts: localhost
   name: 07 - Create NSX Transport Zones
   gather_facts: false
   vars_files:

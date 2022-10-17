@@ -1,6 +1,6 @@
 # WARNING WIP #
 ---
-- hosts: 127.0.0.1
+- hosts: localhost
   name: 13 - Remove Tier1 Gateways
   gather_facts: false
   vars_files:

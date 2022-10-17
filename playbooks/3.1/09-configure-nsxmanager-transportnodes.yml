@@ -1,5 +1,5 @@
 ---
-- hosts: 127.0.0.1
+- hosts: localhost
   name: 09 - Configure NSX Transport Node Collection
   gather_facts: false
   vars_files:

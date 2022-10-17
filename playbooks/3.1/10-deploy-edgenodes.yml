@@ -1,5 +1,5 @@
 ---
-- hosts: 127.0.0.1
+- hosts: localhost
   name: 10 - Deploy NSX Edge Transport Nodes
   gather_facts: false
   vars_files:

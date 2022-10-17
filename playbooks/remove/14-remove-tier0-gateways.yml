@@ -1,6 +1,6 @@
 # # WARNING WIP DOES NOT WORK #
 ---
-- hosts: 127.0.0.1
+- hosts: localhost
   name: 14 - Remove Tier0 Gateway
   gather_facts: false
   vars_files:

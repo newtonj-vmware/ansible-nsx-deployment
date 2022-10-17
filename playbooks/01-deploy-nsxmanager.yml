@@ -1,5 +1,5 @@
 ---
-- hosts: 127.0.0.1
+- hosts: localhost
   name: 01 - Deploy the NSX Manager to a vCenter environment
   gather_facts: false
   vars_files:
