@@ -7,7 +7,7 @@
   ## You can "EXTRA_VARS" files to overwrite the answerfile.yml
   ## Example: ansible-playbook -e @answerfile-lab1.yml -e nsx_liscense="XXXXX-XXXXX-XXXXX-XXXXX-XXXXX" deploy-nsx.yml  (Add different license)
   ## Note you MUST add the @ in front of a filename
-  ## You can add --check at the end of "ansible-playbook" line to do a dry-run. (Will create false error for playbook 10)
+  ## You can add --check or -C at the end of "ansible-playbook" line to do a dry-run. (Will create false error for playbook 10)
   ## Note (dynamic) in an area means this you can repeat the same code for multiple actions (e.g. Multiple Compute Managers, Uplink Profiles, Edge Nodes Deployments etc)
   ## If you're in a (dynamic) playbook and only have a single object to add but two are in the example, remove the extra lines or add ## in fron of the lines you do not want to be processed -
   ## (E.g. Compute Managers Section Everything under ## Start of 2nd Compute Manager would have a ## in front, so that only a single Compute Manager would be added)
