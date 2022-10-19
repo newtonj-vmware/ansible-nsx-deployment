@@ -1,0 +1,30 @@
+## Example of using the nsxt_rest module
+---
+- hosts: localhost
+  name: Change VDR MAC address
+  gather_facts: false
+  vars_files:
+    - ../answerfile.yml
+
+  tasks:
+    - name: Changing VDR MAC
+      vmware.ansible_for_nsxt.nsxt_rest:
+        hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
+        username: "{{ nsx_admin_user }}"
+        password: "{{ nsx_admin_password }}"
+        validate_certs: "{{ nsx_validate_certs }}"
+        method: get
+        path: /policy/api/v1/infra/global-config
+        ## _revision has to match current _revision number or it will error (Use get to confirm)
+        content:
+          {
+            "vdr_mac": "02:50:56:56:44:72",
+            "allow_changing_vdr_mac_in_use": true,
+            "_revision": 0
+          }
+      register: result
+
+    - name: Showing Change
+      ansible.builtin.debug:
+        var: result
+...
