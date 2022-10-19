@@ -19,6 +19,15 @@
 - import_playbook: playbooks/3.1/09-configure-nsxmanager-transportnodes.yml
 - import_playbook: playbooks/3.1/10-deploy-edgenodes.yml
 - import_playbook: playbooks/3.1/11-configure-nsxmanager-edgeclusters.yml
-#- import_playbook: playbooks/3.1/12-deploy-nsxmanager-cluster.yml
-#- import_playbook: playbooks/3.2/13-clear-password-expiration.yml
+
+## Would suggest running the next section seperate from above - Need to give time for Edge Clusters to populate.  
+## Playbook 11 has a pause that can be enabled
+
+- import_playbook: playbooks/12-create-edge-bridge-profiles
+- import_playbook: playbooks/13-create-vlan-segments
+- import_playbook: playbooks/14-create-tier0-gateways
+- import_playbook: playbooks/15-create-tier1-gateways
+- import_playbook: playbooks/16-create-segments
+- import_playbook: playbooks/17-deploy-nsxmanager-cluster.yml       ## This can run anytime AFTER 04-configure-compute-mangers - It relies on a Compute Manager being defined
+#- import_playbook: playbooks/1x-clear-password-expiration.yml
 ...

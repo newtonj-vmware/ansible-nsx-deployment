@@ -19,4 +19,8 @@
         state: "{{ state }}"
       with_items:
         - "{{ edge_clusters }}"
+
+    - name: Pausing 1 minute for Edge Clusters to fully populate
+      ansible.builtin.pause:
+        seconds: 60
 ...
