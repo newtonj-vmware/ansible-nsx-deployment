@@ -1,4 +1,5 @@
 ## Example of using the nsxt_rest module
+## https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.2/migration/GUID-538774C2-DE66-4F24-B9B7-537CA2FA87E9.html
 ---
 - hosts: localhost
   name: Change VDR MAC address
