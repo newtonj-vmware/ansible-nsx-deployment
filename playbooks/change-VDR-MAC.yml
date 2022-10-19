@@ -14,7 +14,7 @@
         username: "{{ nsx_admin_user }}"
         password: "{{ nsx_admin_password }}"
         validate_certs: "{{ nsx_validate_certs }}"
-        method: get
+        method: put
         path: /policy/api/v1/infra/global-config
         ## _revision has to match current _revision number or it will error (Use get to confirm)
         content:
