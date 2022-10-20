@@ -29,5 +29,4 @@
 - import_playbook: playbooks/15-create-tier1-gateways
 - import_playbook: playbooks/16-create-segments
 - import_playbook: playbooks/17-deploy-nsxmanager-cluster.yml       ## This can run anytime AFTER 04-configure-compute-mangers - It relies on a Compute Manager being defined
-#- import_playbook: playbooks/1x-clear-password-expiration.yml
 ...
