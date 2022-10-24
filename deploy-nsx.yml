@@ -1,3 +1,4 @@
+##
 ---
 - hosts: localhost
   name: NSX 3.2.x + 4.x Deployment
@@ -8,25 +9,25 @@
 
 # Infrastructure Deployment #
 
-- import_playbook: playbooks/01-deploy-nsxmanager.yml
-- import_playbook: playbooks/02-configure-nsxmanager-vip.yml
-- import_playbook: playbooks/03-configure-nsxmanager-license.yml
-- import_playbook: playbooks/04-configure-compute-managers.yml
-- import_playbook: playbooks/05-configure-nsxmanager-uplinkprofiles.yml
-- import_playbook: playbooks/06-configure-nsxmanager-ippools.yml
-- import_playbook: playbooks/07-configure-nsxmanager-transportzones.yml
-- import_playbook: playbooks/08-configure-nsxmanager-transportnodesprofiles.yml
-- import_playbook: playbooks/09-configure-nsxmanager-transportnodes.yml
-- import_playbook: playbooks/10-deploy-edgenodes.yml
-- import_playbook: playbooks/11-configure-nsxmanager-edgeclusters.yml
+- ansible.builtin.import_playbook: playbooks/01-deploy-nsxmanager.yml
+- ansible.builtin.import_playbook: playbooks/02-configure-nsxmanager-vip.yml
+- ansible.builtin.import_playbook: playbooks/03-configure-nsxmanager-license.yml
+- ansible.builtin.import_playbook: playbooks/04-configure-compute-managers.yml
+- ansible.builtin.import_playbook: playbooks/05-configure-nsxmanager-uplinkprofiles.yml
+- ansible.builtin.import_playbook: playbooks/06-configure-nsxmanager-ippools.yml
+- ansible.builtin.import_playbook: playbooks/07-configure-nsxmanager-transportzones.yml
+- ansible.builtin.import_playbook: playbooks/08-configure-nsxmanager-transportnodesprofiles.yml
+- ansible.builtin.import_playbook: playbooks/09-configure-nsxmanager-transportnodes.yml
+- ansible.builtin.import_playbook: playbooks/10-deploy-edgenodes.yml
+- ansible.builtin.import_playbook: playbooks/11-configure-nsxmanager-edgeclusters.yml
 
 ## Would suggest running the next section seperate from above - Need to give time for Edge Clusters to populate.  
 ## Playbook 11 has a pause that can be enabled
 
-- import_playbook: playbooks/12-create-edge-bridge-profiles
-- import_playbook: playbooks/13-create-vlan-segments
-- import_playbook: playbooks/14-create-tier0-gateways
-- import_playbook: playbooks/15-create-tier1-gateways
-- import_playbook: playbooks/16-create-segments
-- import_playbook: playbooks/17-deploy-nsxmanager-cluster.yml       ## This can run anytime AFTER 04-configure-compute-mangers - It relies on a Compute Manager being defined
+- ansible.builtin.import_playbook: playbooks/12-create-edge-bridge-profiles
+- ansible.builtin.import_playbook: playbooks/13-create-vlan-segments
+- ansible.builtin.import_playbook: playbooks/14-create-tier0-gateways
+- ansible.builtin.import_playbook: playbooks/15-create-tier1-gateways
+- ansible.builtin.import_playbook: playbooks/16-create-segments
+- ansible.builtin.import_playbook: playbooks/17-deploy-nsxmanager-cluster.yml       ## This can run anytime AFTER 04-configure-compute-mangers - It relies on a Compute Manager being defined
 ...

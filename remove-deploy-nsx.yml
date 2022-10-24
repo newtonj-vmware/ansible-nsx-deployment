@@ -1,24 +1,23 @@
-# WARNING WIP #
+## WARNING WIP ##
 ---
-- hosts: 127.0.0.1
+- hosts: localhost
   name: Remove NSX Deployment
   gather_facts: false
-  vars_files: 
+  vars_files:
     - answerfile.yml
 
-# Ensure ALL Segments, T1s and T0s are removed before running.
-# Quick way is to add Extra_Vars for removal - (e.g. ansisble-playbook -e @answerfile-deployment.yml -e state="absent") - This will overwrite your answerfile state to absent vs present
-# Infrastructure Deployment # 
+## Ensure ALL Segments, T1s and T0s are removed before running.
+## Quick way is to add Extra_Vars for removal - (e.g. ansisble-playbook -e @answerfile-deployment.yml -e state="absent") - This will overwrite your answerfile state to absent vs present
+## Infrastructure Deployment # 
 
-- import_playbook: playbooks/remove/01-remove-nsxmanager-edgeclusters.yml
-- import_playbook: playbooks/remove/02-remove-edgenodes.yml
-# "--==You must manually Remove NSX on ALL NSX Transport Node clusters before continuing==--"
-- import_playbook: playbooks/remove/03-remove-nsxmanager-transportnodesprofiles.yml
-- import_playbook: playbooks/remove/04-remove-nsxmanager-transportzones.yml
-- import_playbook: playbooks/remove/05-remove-nsxmanager-ippools.yml
-- import_playbook: playbooks/remove/06-remove-nsxmanager-uplinkprofiles.yml
-# "--==You must manually Remove NSX Managers from cluster==--" BEFORE REMOVING Compute Mangers
-- import_playbook: playbooks/remove/07-remove-compute-managers.yml
-- import_playbook: playbooks/remove/08-remove-nsxmanager-vip.yml
-
+- ansible.builtin.import_playbook: playbooks/remove/01-remove-nsxmanager-edgeclusters.yml
+- ansible.builtin.import_playbook: playbooks/remove/02-remove-edgenodes.yml
+## "--==You must manually Remove NSX on ALL NSX Transport Node clusters before continuing==--"
+- ansible.builtin.import_playbook: playbooks/remove/03-remove-nsxmanager-transportnodesprofiles.yml
+- ansible.builtin.import_playbook: playbooks/remove/04-remove-nsxmanager-transportzones.yml
+- ansible.builtin.import_playbook: playbooks/remove/05-remove-nsxmanager-ippools.yml
+- ansible.builtin.import_playbook: playbooks/remove/06-remove-nsxmanager-uplinkprofiles.yml
+## "--==You must manually Remove NSX Managers from cluster==--" BEFORE REMOVING Compute Mangers
+- ansible.builtin.import_playbook: playbooks/remove/07-remove-compute-managers.yml
+- ansible.builtin.import_playbook: playbooks/remove/08-remove-nsxmanager-vip.yml
 ...

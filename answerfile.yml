@@ -46,7 +46,7 @@ nsx_netmask: "255.255.255.0"                                              ## Net
 nsx_gateway: "10.255.11.1"                                                ## Gateway IP address for NSX Manager being deployed
 nsx_dns_server: "10.255.10.200"                                           ## DNS server for NSX Manager being deployed
 nsx_ntp_server: "10.255.11.199"                                           ## NTP server for NSX Manager being deployed
-nsx_vip: '10.255.11.156'                                                  ## Virtual IP address will be assigned to the NSX Manager Cluster
+nsx_vip: "10.255.11.156"                                                  ## Virtual IP address will be assigned to the NSX Manager Cluster
 nsx_role: "NSX Manager"                                                   ## Needed role for NSX Manager deployment [NSX Global Manager or NSX Manager or nsx-cloud-service-manager]
 nsx_admin_user: "admin"                                                   ## This user will be used for deployment and status checks
 nsx_admin_password: "NSX$321nsx$321"                                      ## This password will be used for deployment and status checks
