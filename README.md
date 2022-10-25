@@ -33,10 +33,16 @@ ansible-galaxy collection install git+https://github.com/vmware/ansible-for-nsxt
 
 Specify latest supported release branch
 
-```
 Pulling master collection due to error in the v3.2.0 branch
+```
 ansible-galaxy collection install git+https://github.com/vmware/ansible-for-nsxt.git,master
 ```
+
+Also helpful is the vmware community collection. Used to poweroff / remove NSX Manager VM 
+```
+ansible-galaxy collection install -U community.vmware
+```
+
 ## Usage
 
 Please do NOT populate the answerfile.yml, so that you can use git pull to get latest files.   Save file with deployment name e.g. mylab01-answerfile.yml
