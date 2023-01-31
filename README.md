@@ -4,6 +4,10 @@ Not all Remove playbooks work (Tier0 removal)
 
 However it will fully deploy a NSX environment from nothing to fully deployed T0s/T1s and segments connected to either. 
 
+## Getting started with Ansible
+Might be useful to go through if you've never used Ansible - Goes through the installation, configure and basic using Ansible w/ this Deployment
+[NSX Infrastructure Deployment using Ansible](https://github.com/newtonj-vmware/ansible-nsx-deployment/blob/main/Ansible%20NSX-T%20Deployment-External.pdf)
+
 ## NSX Compatibility
 The following versions of NSX are supported:
 
