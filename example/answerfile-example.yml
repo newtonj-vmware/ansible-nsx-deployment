@@ -196,7 +196,14 @@ transport_node_profiles:                                                  ## Eac
     host_switch_type: "VDS"                                               ## VDS or NVDS 
     host_switch_name: "vCenter7-VDS"                                      ## VDS Name 
     host_switch_mode: "STANDARD"                                          ## STANDARD or ENS (Enhanced Data Path) or ENS_INTERRUPT
-    uplinks:                                                              ## Uplinks defined for this Transport Node Profile
+    ## pnics - if using NVDS                                              ## Used if "host_switch_type" = NVDS - Comment pnic block out if using VDS
+    # pnics:                                                              ## pnics defined for this Transport Node Profile using NVDS
+    # - device_name: "vmnic2"                                             ## Physical Device on Host Transport Node
+    #   uplink_name:  "vmnic2"                                            ## Uplink name defined in Uplink Profile Name
+    # - device_name: "vmnic3"                                             ## 2nd Physical Device on Host Transport Node (if used)
+    #   uplink_name:  "vmnic3"                                            ## 2nd Uplink name defined in Uplink Profile Name (if used)
+    ## uplinks - if using VDS                                             ## Used if "host_switch_type" = VDS - Comment uplink block out if using NVDS
+    uplinks:                                                              ## Uplinks defined for this Transport Node Profile using VDS
     - uplink_name: "vmnic0"                                               ## Follows the name given to Active Uplinks from selected Uplink Profile Name (Defined in Uplink Profile Section teaming/active_list/uplink_name)
       vds_uplink_name: "dvUplink1"                                        ## Follows the VDS Uplink name if backing by VDS
     - uplink_name: "vmnic1"                                               ## 2nd Follows the name given to Active Uplinks from selected Uplink Profile Name (Defined in Uplink Profile Section teaming/active_list/uplink_name) *If using Multiple TEPs
