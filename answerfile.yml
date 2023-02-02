@@ -76,8 +76,9 @@ compute_managers:                                                         ## Eac
 ## Uplink Profiles Section (dynamic)
 ## Used for playbook 05                                                   ## https://github.com/vmware/ansible-for-nsxt/blob/master/plugins/modules/nsxt_uplink_profiles.py
 uplink_profiles:                                                          ## Each new Uplink Profile will start with - display_name
-- display_name: "UP-ESXi-MTEP"                                            ## Display Name of this new Uplink Profile
-  mtu: "1700"                                                             ## MTU (1280-9000) Note: MTU is not applicable for VDS, this varible is ignored unless playbook 05 is changed (Use Global MTU)
+- display_name: "UP-ESXi-MTEP"                                            ## Display Name of this new Uplink Profile 
+  description: "ESXi Host Multi-TEP Uplink Profile"                       ## Description of Uplink Profile (Not Required)
+  #mtu: "1700"                                                            ## MTU (1280-9000) Note: MTU is not applicable for VDS. (Use Global MTU) (Not Required)
   teaming:                                                                ## Teamings section of Uplink Profiles - [Default Teaming] (active_list / standby_list [if needed])
     active_list:                                                          ## Active Uplinks section of Uplink Profiles
     - uplink_name: "vmnic0"                                               ## Name under Active Uplinks
@@ -99,7 +100,8 @@ uplink_profiles:                                                          ## Eac
     policy: FAILOVER_ORDER                                                  
 ## Start of 2nd Uplink Profile 
 - display_name: "UP-EDGE-MTEP"
-  mtu: "1700"
+  description: "NSX Edge Multi-TEP Uplink Profile"
+  #mtu: "1700"
   teaming:
     active_list:
     - uplink_name: "fp-eth0"
@@ -121,7 +123,8 @@ uplink_profiles:                                                          ## Eac
     policy: FAILOVER_ORDER  
 ## Start of 3rd Uplink Profile
 - display_name: "UP-ESXi-STEP"
-  mtu: "1700"
+  description: "ESXi Host Single TEP Uplink Profile"
+  #mtu: "1700"
   teaming:
     active_list:
     - uplink_name: "vmnic0"
@@ -133,7 +136,8 @@ uplink_profiles:                                                          ## Eac
   transport_vlan: 140
 ## Start of 4th Uplink Profile
 - display_name: "UP-EDGE-STEP"
-  mtu: "1700"
+  description: "NSX Edge Single TEP Uplink Profile"
+  #mtu: "1700"
   teaming:
     active_list:
     - uplink_name: "fp-eth0"
