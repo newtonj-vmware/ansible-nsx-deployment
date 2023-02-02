@@ -76,7 +76,7 @@ compute_managers:                                                         ## Eac
 ## Uplink Profiles Section (dynamic)
 ## Used for playbook 05                                                   ## https://github.com/vmware/ansible-for-nsxt/blob/master/plugins/modules/nsxt_uplink_profiles.py
 uplink_profiles:                                                          ## Each new Uplink Profile will start with - display_name
-- display_name: "UP-ESXi-MTEP"                                            ## Display Name of this new Uplink Profile 
+- display_name: "UP-ESXi-MTEP"                                            ## Display Name of this new Uplink Profile
   description: "ESXi Host Multi-TEP Uplink Profile"                       ## Description of Uplink Profile (Not Required)
   #mtu: "1700"                                                            ## MTU (1280-9000) Note: MTU is not applicable for VDS. (Use Global MTU) (Not Required)
   teaming:                                                                ## Teamings section of Uplink Profiles - [Default Teaming] (active_list / standby_list [if needed])
@@ -152,6 +152,7 @@ uplink_profiles:                                                          ## Eac
 ## Used for playbook 06                                                   ## https://github.com/vmware/ansible-for-nsxt/blob/master/plugins/modules/nsxt_ip_pools.py
 ip_pools:                                                                 ## Each new IP Pool will start with - display_name (Answerfile / Playbook will follow standard StaticIpPoolSpec)
 - display_name: "IP-ESXi-TEP-Pool"                                        ## Display Name of this new IP Pool 
+  description: "ESXi TEP IP Pool - Created by Ansible"                    ## Optional - Description for IP Pool
   subnets:                                                                ## Setnets / IP section
   - allocation_ranges:                                                    ## IP Range Info
     - start: "172.16.140.10"                                              ## Start IP Address
@@ -160,9 +161,10 @@ ip_pools:                                                                 ## Eac
     gateway_ip: "172.16.140.1"                                            ## Gateway IP Address ## if not needed
     state: present                                                        ## State "present" needed to create Required
     id: "IP-ESXi-TEP-Pool"                                                ## id or display_name needed under allocation_ranges
-  description: "ESXi TEP IP Pool - Created by Ansible"                    ## Optional - Description for IP Pool
+  
 ## 2nd IP Pool
 - display_name: "IP-EDGE-TEP-Pool"
+  description: "Edge TEP IP Pool - Created by Ansible"
   subnets:
   - allocation_ranges:
     - start: "172.16.141.10"
@@ -171,18 +173,18 @@ ip_pools:                                                                 ## Eac
     gateway_ip: "172.16.141.1"
     state: present
     display_name: "IP-EDGE-TEP-Pool"
-  description: "Edge TEP IP Pool - Created by Ansible"
+  
 
 ## Transport Zone Section (dynamic)
 ## Note - For 3.1 (3.2 is not a problem) using the default transport zone names of [nsx-overlay-transportzone and nsx-vlan-transportzone] will cause an error.  Use a unqiue name or remove the two default names.
 ## Used for playbook 07                                                   ## https://github.com/vmware/ansible-for-nsxt/blob/master/plugins/modules/nsxt_transport_zones.py
 transportzones:                                                           ## Each new Transport Zone will start with - display_name
 - display_name: "nsx-overlay-transportzone"                               ## Display Name of this Transport Zone
+  description: "Edge TEP IP Pool - Created by Ansible"
   transport_type: "OVERLAY"                                               ## Type of Transport Zone (OVERLAY or VLAN)
-  description: "Ansible Created NSX Overlay Transportzone"                ## Optional - Description for this Transport Zone
 - display_name: "nsx-vlan-transportzone"
-  transport_type: "VLAN"
   description: "Ansible Created NSX VLAN Transportzone"
+  transport_type: "VLAN"
   uplink_teaming_policy_names:                                            ## Name of the Named Teaming Policies defined in Uplink Profile Sections named_teamings/name (MUST BE type transport_type: VLAN)
   - "TOR-1"                                                               ## 1st Named Teaming Policy
   - "TOR-2"                                                               ## 2nd Named Teaming Policy
@@ -345,6 +347,7 @@ vlan_segments:                                                            ## Eac
 ## Used for playbook 14                                                   ## https://github.com/vmware/ansible-for-nsxt/blob/master/plugins/modules/nsxt_policy_tier0.py
 tier0:                                                                    ## Each T0 Gateway will start with - display_name
 - display_name: "Ansible-T0-Gateway"                                      ## Display name of T0 Gateway
+  description: "Ansible T0 Gateway"                                       ## Optional - Description of T0 Gateway
   locale_services:                                                        ## T0 Locale Services 
   - display_name: "Ansible-T0-Gateway"                                    ## Display name for Locale Service (Would copy display_name)  
     do_wait_till_create: true                                             ## Optional - Can be used to wait for the realization of subresource
@@ -433,6 +436,7 @@ tier0:                                                                    ## Eac
 ## Used for playbook 15                                                   ## https://github.com/vmware/ansible-for-nsxt/blob/master/plugins/modules/nsxt_policy_tier1.py
 tier1:                                                                    ## Each T1 Gateway will start with - display_name
 - display_name: "Ansible-Tier1-Gateway"                                   ## Display name of T1 Gateway
+  description: "Ansible Tier1 Gateway"                                    ## Optional - Description of T1 Gateway
   tier0_display_name: "Ansible-T0-Gateway"                                ## Optional - Display name of T1 Gateway (Copy display_name from above)
   # locale_services:                                                      ## Optional - *See python file for usage (Services will need a name) - Example
   # - state: "{{ state }}"                                                ## Optional - *See python file for usage - Example
@@ -455,6 +459,7 @@ tier1:                                                                    ## Eac
 ## Used for playbook 16                                                   ## https://github.com/vmware/ansible-for-nsxt/blob/master/plugins/modules/nsxt_policy_segment.py                             
 segments:                                                                 ## Each Segment will start with - display_name
 - display_name: "Bridge-Segment-172.16.5.0-24"                            ## Display name of Segment
+  description: "Ansible Bridge Segment"                                   ## Optional - Description of Segment
   transport_zone_display_name: "overlay-transportzone"                    ## Overlay Transport Zone Name
   connectivity_path: "/infra/tier-1s/Ansible-Tier1-Gateway"               ## Optional - Connectivity Path to T0 or T1 (Normally /infra/tier-#s/<Gateway Display Name>)
   subnets:                                                                ## Optional - Segment IP Info

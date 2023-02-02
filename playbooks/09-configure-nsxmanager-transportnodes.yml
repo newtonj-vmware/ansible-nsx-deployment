@@ -12,7 +12,7 @@
         username: "{{ nsx_admin_user }}"
         password: "{{ nsx_admin_password }}"
         validate_certs: "{{ nsx_validate_certs }}"
-        display_name: "{{ item.display_name }}"
+        display_name: "{{ item.display_name | default(required) }}"
         resource_type: "TransportNodeCollection"
         description: "{{ item.description | default(omit) }}"
         compute_manager_name: "{{ item.compute_manager_name }}"

@@ -13,6 +13,7 @@
         password: "{{ nsx_admin_password }}"
         validate_certs: "{{ nsx_validate_certs }}"
         display_name: "{{ item.display_name }}"
+        description: "{{ item.description | default(omit) }}"
         tier0_display_name: "{{ item.tier0_display_name | default(omit) }}"
         locale_services: "{{ item.locale_services | default(omit) }}"
         route_advertisement_types: "{{ item.route_advertisement_types | default(omit) }}"

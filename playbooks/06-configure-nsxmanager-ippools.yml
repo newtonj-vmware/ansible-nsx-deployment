@@ -12,8 +12,8 @@
         username: "{{ nsx_admin_user }}"
         password: "{{ nsx_admin_password }}"
         validate_certs: "{{ nsx_validate_certs }}"
-        display_name: "{{ item.display_name | default(omit) }}"
-        description: "{{ item.description }}"
+        display_name: "{{ item.display_name | default(required) }}"
+        description: "{{ item.description | default(omit) }}"
         pool_static_subnets: "{{ item.subnets }}"
         state: "{{ state }}"
       with_items:

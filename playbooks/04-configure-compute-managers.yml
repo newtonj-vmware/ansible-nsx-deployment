@@ -12,7 +12,8 @@
         username: "{{ nsx_admin_user }}"
         password: "{{ nsx_admin_password }}"
         validate_certs: "{{ nsx_validate_certs }}"
-        display_name: "{{ item.display_name }}"
+        display_name: "{{ item.display_name | default(required) }}"
+        description: "{{ item.description | default(omit) }}"
         server: "{{ item.server }}"
         origin_type: vCenter
         credential: "{{ item.credentials }}"

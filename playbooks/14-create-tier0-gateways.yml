@@ -13,6 +13,7 @@
         password: "{{ nsx_admin_password }}"
         validate_certs: "{{ nsx_validate_certs }}"
         display_name: "{{ item.display_name }}"
+        description: "{{ item.description | default(omit) }}"
         locale_services: "{{ item.locale_services }}"
         state: "{{ state }}"
       with_items:

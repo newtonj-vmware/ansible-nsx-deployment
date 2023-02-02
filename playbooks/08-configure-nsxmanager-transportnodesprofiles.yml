@@ -13,7 +13,7 @@
         password: "{{ nsx_admin_password }}"
         validate_certs: "{{ nsx_validate_certs }}"
         resource_type: "TransportNodeProfile"
-        display_name: "{{ item.display_name }}"
+        display_name: "{{ item.display_name | default(required) }}"
         description: "{{ item.description | default(omit) }}"
         host_switch_spec:
           resource_type: "StandardHostSwitchSpec"
