@@ -393,6 +393,7 @@ tier0:                                                                    ## Eac
       - ip_addresses:                                                     ## Interface IP Address Configuration
         - "172.16.200.20"                                                 ## IP Address of Interface
         prefix_len: "24"                                                  ## IP Address Prefix
+      urpf_mode: "STRICT"                                                 ## uRPF (Unicast Reverse Path Forwarding) STRICT (default) or NONE *Must be all CAPS
       segment_display_name: "Edge-Uplink-VLAN200"                         ## Interface connected to Segment Name (Defined VLAN Segments)
       edge_node_info:                                                     ## Edge Node to Connection Info
         edge_cluster_display_name: "Edge-Cluster-01"                      ## Edge Cluster Edge Node is located in
@@ -404,6 +405,7 @@ tier0:                                                                    ## Eac
       - ip_addresses:
         - "172.16.201.20"
         prefix_len: "24"
+      urpf_mode: "STRICT"
       segment_display_name: "Edge-Uplink-VLAN201"
       edge_node_info:
         edge_cluster_display_name: "Edge-Cluster-01"
@@ -415,6 +417,7 @@ tier0:                                                                    ## Eac
       - ip_addresses:
         - "172.16.200.21"
         prefix_len: "24"
+      urpf_mode: "STRICT"
       segment_display_name: "Edge-Uplink-VLAN200"
       edge_node_info:
         edge_cluster_display_name: "Edge-Cluster-01"
@@ -426,6 +429,7 @@ tier0:                                                                    ## Eac
       - ip_addresses:
         - "172.16.201.21"
         prefix_len: "24"
+      urpf_mode: "STRICT"
       segment_display_name: "Edge-Uplink-VLAN201"
       edge_node_info:
         edge_cluster_display_name: "Edge-Cluster-01"
