@@ -15,6 +15,7 @@
         display_name: "{{ item.display_name | default(required) }}"
         description: "{{ item.description | default(omit) }}"
         server: "{{ item.server }}"
+        set_as_oidc_provider: "{{ item.oidc_provider | default(omit) }}"
         origin_type: vCenter
         credential: "{{ item.credentials }}"
         state: "{{ state }}"

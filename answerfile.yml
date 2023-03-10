@@ -61,6 +61,7 @@ nsx_validate_certs: False                                                 ## Che
 compute_managers:                                                         ## Each new Compute Manager will start with - display_name
 - display_name: "nsx-vcenter"                                             ## Display Name of this new Compute Manager (Name of how you see this Compute Manager)
   server: "nsx-vcenter.vmware.lab"                                        ## This is the IP / FQDN of the new Compute Manager
+  oidc_provider: False                                                    ## False or True (False Defualt) - "Enable Trust" Specifies whether compute manager has been set as OIDC provider If the compute manager is VC and need to set set as OIDC provider for NSX then this flag should be set as true. This is specific to TKGS. NSX-T 3.0 only
   credentials:
     credential_type: UsernamePasswordLoginCredential                      ## Possible values are 'UsernamePasswordLoginCredential', 'VerifiableAsymmetricLoginCredential', 'SessionLoginCredential'
     username: "administrator@vsphere.local"                               ## User to use to connect to this new Compute Manager
