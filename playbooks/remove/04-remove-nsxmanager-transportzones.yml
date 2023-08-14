@@ -16,7 +16,7 @@
         display_name: "{{ item.display_name }}"
         description: "{{ item.description }}"
         # host_switch_mode: "STANDARD" # PRE 3.2
-        transport_type: "{{ item.transport_type }}"
+        tz_type: "{{ item.tz_type }}"
         state: "{{ state }}"
       with_items:
         - "{{ transportzones }}"

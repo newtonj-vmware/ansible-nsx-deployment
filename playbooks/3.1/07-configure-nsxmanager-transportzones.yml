@@ -18,7 +18,7 @@
         # host_switch_mode is required for PRE 3.2 (Will error without)
         # It must NOT be set for 3.2+ (Will error if set - 'Json de-serialization error: property host_switch_mode is unrecognized.')
         host_switch_mode: "STANDARD" # PRE 3.2
-        transport_type: "{{ item.transport_type }}"
+        tz_type: "{{ item.tz_type }}"
         uplink_teaming_policy_names: "{{ item.uplink_teaming_policy_names }}"
         state: "{{ state }}"
       with_items:
@@ -37,7 +37,7 @@
         # host_switch_mode is required for PRE 3.2 (Will error without)
         # It must NOT be set for 3.2+ (Will error if set - 'Json de-serialization error: property host_switch_mode is unrecognized.')
         host_switch_mode: "STANDARD" # PRE 3.2
-        transport_type: "{{ item.transport_type }}"
+        tz_type: "{{ item.tz_type }}"
         state: "{{ state }}"
       with_items:
         - "{{ transportzones }}"

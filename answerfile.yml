@@ -182,10 +182,10 @@ ip_pools:                                                                 ## Eac
 transportzones:                                                           ## Each new Transport Zone will start with - display_name
 - display_name: "nsx-overlay-transportzone"                               ## Display Name of this Transport Zone
   description: "Edge TEP IP Pool - Created by Ansible"
-  transport_type: "OVERLAY"                                               ## Type of Transport Zone (OVERLAY or VLAN)
+  tz_type: "OVERLAY_BACKED"                                               ## Type of Transport Zone (OVERLAY_BACKED or VLAN_BACKED)
 - display_name: "nsx-vlan-transportzone"
   description: "Ansible Created NSX VLAN Transportzone"
-  transport_type: "VLAN"
+  tz_type: "VLAN_BACKED"
   uplink_teaming_policy_names:                                            ## Name of the Named Teaming Policies defined in Uplink Profile Sections named_teamings/name (MUST BE type transport_type: VLAN)
   - "TOR-1"                                                               ## 1st Named Teaming Policy
   - "TOR-2"                                                               ## 2nd Named Teaming Policy
@@ -440,23 +440,27 @@ tier0:                                                                    ## Eac
 ## Should call already created objects
 ## Used for playbook 15                                                   ## https://github.com/vmware/ansible-for-nsxt/blob/master/plugins/modules/nsxt_policy_tier1.py
 tier1:                                                                    ## Each T1 Gateway will start with - display_name
-- display_name: "Ansible-Tier1-Gateway"                                   ## Display name of T1 Gateway
-  description: "Ansible Tier1 Gateway"                                    ## Optional - Description of T1 Gateway
-  tier0_display_name: "Ansible-T0-Gateway"                                ## Optional - Display name of T1 Gateway (Copy display_name from above)
-  # locale_services:                                                      ## Optional - *See python file for usage (Services will need a name) - Example
-  # - state: "{{ state }}"                                                ## Optional - *See python file for usage - Example
-  #   display_name: "Ansible-T0-Gateway"                                  ## Optional - *See python file for usage - Example
+- display_name: "Services-Ansible-Tier1-Gateway"                          ## Display name of T1 Gateway
+  description: "Stateful Services Ansible Tier1 Gateway"                  ## Optional - Description of T1 Gateway
+  tier0_display_name: "Ansible-T0-Gateway"                                ## Optional - Display name of T0 Gateway - Which T0 to connect this T1 to
+  locale_services:                                                        ## Optional - Locale Services *See python file for usage -
+  - state: present                                                        ## Optional - state - present / absent
+    display_name: "Services-Ansible-Tier1-Gateway"                        ## Optional - Display_name of T1 Services
+    edge_cluster_info:                                                    ## Optional - Edge Cluster Info *no changes* - If only one Edge Cluster you can # out 
+       edge_cluster_display_name: "Edge-Cluster-01"                       ## Optional - Edge Cluster Display Name - If only one Edge Cluster you can # out 
+  route_advertisement_types:                                              ## Optional - Route Adverisement Types
+  - "TIER1_CONNECTED"                                                     ## Optional - Route Adverisement Type - *See python file for types    
+  - "TIER1_LB_VIP"
+#No Services T1 - Not connected to Edge Cluster
+- display_name: "No-Services-Ansible-Tier1-Gateway"                       ## Display name of T1 Gateway
+  description: "No Stateful Services Ansible Tier1 Gateway"               ## Optional - Description of T1 Gateway
+  tier0_display_name: "Ansible-T0-Gateway"                                ## Optional - Display name of T0 Gateway - Which T0 to connect this T1 to
+  locale_services:                                                        ## Optional - *See python file for usage (Services will need a name) - Example
+  - state: absent                                                         ## Optional - *See python file for usage - Example - This example will have NO Edge Cluster Selected
+    display_name: "No-Services-Ansible-Tier1-Gateway"                     ## Optional - *See python file for usage - Example - If no Edge Cluster is select - # everything under local_services / state / Display_name.
   route_advertisement_types:                                              ## Optional - Route Adverisement Types
   - "TIER1_CONNECTED"                                                     ## Optional - Route Adverisement Type - *See python file for types
-  - "TIER1_IPSEC_LOCAL_ENDPOINT"
-- display_name: "TheOther-Ansible-Tier1-Gateway"                
-  tier0_display_name: "Ansible-T0-Gateway"
-  # locale_services:
-  # - state: "{{ state }}"
-  #   display_name: "Ansible-T0-Gateway"
-  route_advertisement_types:
-  - "TIER1_CONNECTED"
-  - "TIER1_IPSEC_LOCAL_ENDPOINT"
+
 
 ## Create Segments (dynamic) (Overlay)
 ## (Connected or not connected to Gateways)
