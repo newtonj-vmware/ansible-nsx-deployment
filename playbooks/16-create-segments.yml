@@ -18,7 +18,7 @@
         connectivity_path: "{{ item.connectivity_path | default(omit) }}"
         subnets: "{{ item.subnets | default(omit) }}"
         admin_state: "{{ item.admin_state | default(omit) }}"
-        advanced_config: "{{ item.advanced_config }}"
+        advanced_config: "{{ item.advanced_config | default(omit) }}"
         bridge_profiles: "{{ item.bridge_profiles | default(omit) }}"
         state: "{{ state }}"
       with_items:
