@@ -12,6 +12,7 @@ Might be useful to go through if you've never used Ansible - Goes through the in
 ## NSX Compatibility
 The following versions of NSX are supported:
 
+* NSX-T 4.1 (Tested against 4.1.0 & 4.1.1) [8/16/2023]
 * NSX-T 4.0 (Tested against 4.0.1 & 4.0.1.1) [10/19/2022]
 * NSX-T 3.2 (Tested against 3.2.0.1 & 3.2.1) [5/19/2022]
 * NSX-T 3.1 (Tested against 3.1.3.7)
