@@ -6,7 +6,7 @@
     - ../answerfile.yml
 
   tasks:
-    - name: Create Tier0 Gateway
+    - name: Create Tier1 Gateway
       vmware.ansible_for_nsxt.nsxt_policy_tier1:
         hostname: "{{ nsx_hostname }}.{{ nsx_domain }}"
         username: "{{ nsx_admin_user }}"
